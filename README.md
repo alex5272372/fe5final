@@ -21,9 +21,9 @@
 
 ## Список использованных технологий
 ### Сервис публикации приложений: Heroku
-[Приложение](https://fe5stepnotes.herokuapp.com/)
+[Приложение](https://fe5final.herokuapp.com/)
 
-[Администрирование](https://dashboard.heroku.com/apps/fe5stepnotes)
+[Администрирование](https://dashboard.heroku.com/apps/fe5final)
 
 ### База данных: MongoDB
 [Администрирование](https://cloud.mongodb.com/v2/5cff8dc0cf09a2451565a0d8#clusters)
