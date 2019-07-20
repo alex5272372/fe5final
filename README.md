@@ -1,68 +1,81 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Степ проект React
+[Задание](https://gitlab.com/dan-it/groups/fe5/tree/master/step-project-instagram)
 
-## Available Scripts
+[Работа в команде на финальном проекте](https://dan-it.gitlab.io/fe-book/teamwork/final.html)
 
-In the project directory, you can run:
+[README.md для Create React App](./CREATE_REACT_APP.md)
 
-### `npm start`
+## Состав участников проекта
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+| № п/п | ФИО | Email | Телефон | 
+|:------:|:---:|:-----:|:-------:|
+| 1 | Николаенко Алексей | alex5272372@gmail.com | +38 (067) 527-23-72 |
+| 2 | Кондратюк Михаил | makenotik@gmail.com |  |
+| 3 |  |  |  |
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Дополнительное описание к заданию
+Для навигации по приложению использован [React Router v4](https://habr.com/ru/post/329996/).
+В частности компонент `HashRouter` для статических сайтов.
 
-### `npm test`
+Для управления состоянием данных и интерфейса использован инструмент Redux.  
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Список использованных технологий
+### Сервис публикации приложений: Heroku
+[Приложение](https://fe5stepnotes.herokuapp.com/)
 
-### `npm run build`
+[Администрирование](https://dashboard.heroku.com/apps/fe5stepnotes)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### База данных: MongoDB
+[Администрирование](https://cloud.mongodb.com/v2/5cff8dc0cf09a2451565a0d8#clusters)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+[Документация по Node.js драйверу](http://mongodb.github.io/node-mongodb-native/3.2/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Имя базы данных: photobook
 
-### `npm run eject`
+#### Коллекция 1: users
+Элемент:
+```json
+{
+    "login": "alex",
+    "password": "123",
+    "icon": "./public/img/alexIcon.png",
+    "subs": [
+      "5d32c8321c9d4400005aa28c"
+    ]
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Коллекция 2: posts
+Элемент:
+```json
+{
+    "postDate": "2019-03-01T10:15:00",
+    "photo": "./public/img/photo1.png",
+    "likes": [
+      "5d32c7d01c9d4400005aa28b",
+      "5d32c8321c9d4400005aa28c"
+    ],
+    "comments": [
+      {
+        "date": "2019-03-01T10:20:00",
+        "user": "5d32c7d01c9d4400005aa28b",
+        "comment": "Comment 1"
+      },
+      {
+        "date": "2019-03-01T10:25:00",
+        "user": "5d32c8321c9d4400005aa28c",
+        "comment": "Comment 2"
+      }     
+    ]
+}
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Клиентская библиотека: React.js
+[Документация](https://ru.reactjs.org/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+[Учебник](https://learn-reactjs.ru/home)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Cервер приложений: Node.js
+[Документация](https://medium.com/devschacht/node-hero-6a07ef8d822d)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[Документация по Create React App](https://facebook.github.io/create-react-app/)
