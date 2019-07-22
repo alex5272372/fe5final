@@ -14,13 +14,15 @@
 | 3 |  |  |  |
 
 ### Задание для студента 1
-1. Сверстать главную страницу `page`.
+1. Базовая архитектура приложения.
+2. Сверстать главную страницу `Page`.
 
 ### Задание для студента 2
-1. Сверстать страницу постов конкретного человека `user`.
+1. Сверстать страницу постов конкретного человека `User`.
 
 ### Задание для студента 3
-1. Сверстать модальное окно поста `post`.
+1. Сверстать модальное окно авторизации `Auth`.
+2. Сверстать модальное окно поста `Post`.
 
 ## Список использованных технологий
 Для навигации по приложению использован [React Router v4](https://habr.com/ru/post/329996/).
@@ -39,6 +41,14 @@
 [Документация по Node.js драйверу](http://mongodb.github.io/node-mongodb-native/3.2/)
 
 Имя базы данных: photobook
+
+Файл настроек `./src/db/config.js`:
+```js
+module.exports = {
+    uri: 'mongodb+srv://<login>:<password>@cluster0-cbtir.gcp.mongodb.net/photobook?retryWrites=true&w=majority',
+    db: 'photobook'
+};
+```
 
 #### Коллекция 1: users
 Элемент:
@@ -87,3 +97,8 @@
 [Документация](https://medium.com/devschacht/node-hero-6a07ef8d822d)
 
 [Документация по Create React App](https://facebook.github.io/create-react-app/)
+
+## Инструкция по запуску проекта
+1. Склонировать проект с репозитория
+2. Создать файл с настройками `./src/db/config.js`
+3. npm run build
