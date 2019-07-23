@@ -4,6 +4,7 @@ import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 
+import {HashRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import rootReducer from './reducers';
@@ -11,7 +12,9 @@ const store = createStore(rootReducer);
 
 render((
     <Provider store={store}>
-        <App />
+        <HashRouter>
+            <App />
+        </HashRouter>
     </Provider>
 ), document.getElementById('root'));
 

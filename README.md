@@ -5,6 +5,25 @@
 
 [README.md для Create React App](./CREATE_REACT_APP.md)
 
+## Инструкция по запуску проекта
+### Последовательность действий
+1. Установить [Node.js](https://nodejs.org/en/download/)
+2. Склонировать проект с репозитория https://github.com/alex5272372/fe5final.git
+3. Создать файл с настройками `./src/settings.js`
+4. В консоли выполнить команду установки зависимостей `npm install`
+5. В консоли выполнить команду сборки проекта `npm run build`
+6. В консоли выполнить команду запуска статического сервера `serve -s build`
+7. Запустить приложение по адресу http://localhost:5000
+
+### Формат файла настроек `./src/settings.js`
+```js
+module.exports = {
+    dbName: 'photobook',
+    dbLogin: 'Your login',
+    dbPassword: 'Your password'
+};
+```
+
 ## Состав участников проекта
 
 | № п/п | ФИО | Email | Телефон | 
@@ -21,14 +40,14 @@
 1. Сверстать страницу постов конкретного человека `User`.
 
 ### Задание для студента 3
-1. Сверстать модальное окно авторизации `Auth`.
+1. Сверстать модальное окно авторизации `SignIn` на основании [примера](https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/sign-in).
 2. Сверстать модальное окно поста `Post`.
 
 ## Список использованных технологий
-Для навигации по приложению использован [React Router v4](https://habr.com/ru/post/329996/).
-В частности компонент `HashRouter` для статических сайтов.
+### Cервер приложений: Node.js
+[Документация](https://medium.com/devschacht/node-hero-6a07ef8d822d)
 
-Для управления состоянием данных и интерфейса использован инструмент [React Redux](https://maxfarseer.gitbooks.io/redux-course-ru-v2/content/sozdanie.html).  
+[Документация по Create React App](https://facebook.github.io/create-react-app/)
 
 ### Сервис публикации приложений: Heroku
 [Приложение](https://fe5final.herokuapp.com/)
@@ -41,14 +60,6 @@
 [Документация по Node.js драйверу](http://mongodb.github.io/node-mongodb-native/3.2/)
 
 Имя базы данных: photobook
-
-Файл настроек `./src/db/config.js`:
-```js
-module.exports = {
-    uri: 'mongodb+srv://<login>:<password>@cluster0-cbtir.gcp.mongodb.net/photobook?retryWrites=true&w=majority',
-    db: 'photobook'
-};
-```
 
 #### Коллекция 1: users
 Элемент:
@@ -93,12 +104,13 @@ module.exports = {
 
 [Учебник](https://learn-reactjs.ru/home)
 
-### Cервер приложений: Node.js
-[Документация](https://medium.com/devschacht/node-hero-6a07ef8d822d)
+### Библиотека для стилизации: MaterialUI
+[Документация](https://material-ui.com/ru/getting-started/installation)
 
-[Документация по Create React App](https://facebook.github.io/create-react-app/)
+### Библиотека для маршрутизации: React Router v4
+[Документация](https://habr.com/ru/post/329996/)
 
-## Инструкция по запуску проекта
-1. Склонировать проект с репозитория
-2. Создать файл с настройками `./src/db/config.js`
-3. npm run build
+Использован компонент `HashRouter` для статических сайтов.
+
+### Библиотека для управления состоянием: React Redux
+[Документация](https://maxfarseer.gitbooks.io/redux-course-ru-v2/content/sozdanie.html)
