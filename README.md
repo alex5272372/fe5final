@@ -110,7 +110,7 @@ module.exports = {
 ### Библиотека для маршрутизации: React Router v4
 [Документация](https://habr.com/ru/post/329996/)
 
-Использован компонент `HashRouter` для статических сайтов.
+Использован компонент `BrowserRouter`.
 
 ### Библиотека для управления состоянием: React Redux
 [Документация](https://maxfarseer.gitbooks.io/redux-course-ru-v2/content/sozdanie.html)

@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export function SignIn() {
+export default function SignIn() {
     const classes = useStyles();
 
     return (

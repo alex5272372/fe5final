@@ -1,11 +1,23 @@
 import React from 'react'
+import {connect} from 'react-redux';
 
-export class Post extends React.Component {
+class Post extends React.Component {
     render() {
+        const {reduxLikes} = this.props;
+
         return (
             <div>
-                <p>Post</p>
+                <h1>Post</h1>
+                <h2>Likes: {reduxLikes}</h2>
             </div>
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        reduxLikes: state.posts.likes
+    };
+}
+
+export default connect(mapStateToProps)(Post)

@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
-import {connect} from 'react-redux';
 
-import {SignIn} from '../components/SignIn';
-import {Page} from '../components/Page';
-import {Post} from '../components/Post';
-import {User} from '../components/User';
+import SignIn from '../components/SignIn';
+import Page from '../components/Page';
+import Post from '../components/Post';
+import User from '../components/User';
 
 // For debugging {
 import {Link} from 'react-router-dom'
@@ -29,31 +28,14 @@ class App extends Component {
             <main>
                 <Header/>
                 <Switch>
-                    <Route exact path='/' component={SignIn}/>
                     <Route path='/page' component={Page}/>
                     <Route path='/post' component={Post}/>
                     <Route path='/user' component={User}/>
+                    <Route path='/' component={SignIn}/>
                 </Switch>
             </main>
         );
-/*
-        return (<div>
-            <section>SignIn login: {this.props.auth.login}</section>
-            <section>Page login: {this.props.page.login}</section>
-            <section>Post login: {this.props.post.login}</section>
-            <section>User login: {this.props.user.login}</section>
-        </div>)
-*/
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        signIn: state.signIn,
-        page: state.page,
-        post: state.post,
-        user: state.user
-    }
-}
-
-export default connect(mapStateToProps)(App)
+export default App;

@@ -1,12 +1,8 @@
-import { combineReducers } from 'redux';
-import signIn from './signIn';
-import page from './page';
-import post from './post';
-import user from './user';
+import {combineReducers} from 'redux';
+import users from './users';
+import posts from './posts';
 
 export default combineReducers({
-    signIn,
-    page,
-    post,
-    user
+    users,
+    posts
 })
