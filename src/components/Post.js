@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 
 class Post extends React.Component {
     render() {
-        const {reduxLikes} = this.props;
+        const {likes} = this.props;
 
         return (
             <div>
                 <h1>Post</h1>
-                <h2>Likes: {reduxLikes}</h2>
+                <h2>Likes: {likes}</h2>
             </div>
         )
     }
@@ -16,7 +16,7 @@ class Post extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        reduxLikes: state.posts.likes
+        likes: state.posts.allPosts[0].likes
     };
 }
 

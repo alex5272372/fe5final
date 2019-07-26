@@ -1,16 +1,26 @@
-import {NEW_LIKE} from '../actions';
+import {actionTypes} from '../actions';
 
 const initialState = {
-    postDate: '',
-    photo: '',
-    likes: 0,
-    comments: ''
+    index: -1,
+    allPosts: [{
+        postDate: '',
+        photo: '',
+        likes: 0,
+        comments: [],
+    }]
 };
 
 function postsReducer(state = initialState, action) {
+    const newPosts = state.allPosts.map(value => ({...value, comments: value.comments.slice()}));
+
     switch (action.type) {
-        case NEW_LIKE:
-            return {...state, likes: state.likes + 1};
+        case actionTypes.NEW_LIKE:
+            newPosts[0].likes++;
+
+            return {
+                index: state.index,
+                allPosts: newPosts
+            };
         default:
             return state;
     }

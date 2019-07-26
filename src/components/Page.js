@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux';
 
-import {NEW_LIKE} from '../actions';
+import {newLike} from '../actions/pageActions';
 
 class Page extends Component {
     render() {
@@ -11,9 +11,7 @@ class Page extends Component {
             <Fragment>
                 <h1>Page</h1>
                 <input type="button"
-                onClick={() => dispatch({
-                    type: NEW_LIKE
-                })}
+                onClick={() => dispatch(newLike())}
                 value='More redux likes'/>
             </Fragment>
         )

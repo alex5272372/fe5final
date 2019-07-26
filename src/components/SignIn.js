@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from "react-redux";
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,6 +9,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+
+import {signInUser, addUser, modifyUser} from '../actions/signInActions';
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -33,8 +37,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SignIn() {
+function SignIn(props) {
     const classes = useStyles();
+    const {login, password, icon, dispatch} = props;
 
     return (
         <Container component="main" maxWidth="xs">
@@ -44,7 +49,7 @@ export default function SignIn() {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in / Sign up
+                    Sign in
                 </Typography>
                 <form className={classes.form} noValidate>
                     <TextField
@@ -57,6 +62,7 @@ export default function SignIn() {
                         name="login"
                         autoComplete="username"
                         autoFocus
+                        value={login}
                     />
                     <TextField
                         variant="outlined"
@@ -68,15 +74,17 @@ export default function SignIn() {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        value={password}
                     />
                     <Button
-                        type="submit"
+                        type="button"
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={() => dispatch(signInUser(login, password))}
                     >
-                        Sign In
+                        sign in
                     </Button>
                     <TextField
                         variant="outlined"
@@ -86,18 +94,40 @@ export default function SignIn() {
                         label="Photo"
                         id="icon"
                         autoComplete="photo"
+                        value={icon}
                     />
                     <Button
-                        type="submit"
+                        type="button"
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={() => dispatch(addUser(login, password, icon))}
                     >
-                        Sign Up
+                        create account
+                    </Button>
+                    <Button
+                        type="button"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        onClick={() => dispatch(modifyUser(password, icon))}
+                    >
+                        update account
                     </Button>
                </form>
             </div>
         </Container>
     );
 }
+
+function mapStateToProps(state) {
+    return {
+        login: state.users.allUsers[0].login,
+        password: state.users.allUsers[0].password,
+        icon: state.users.allUsers[0].icon
+    };
+}
+
+export default connect(mapStateToProps)(SignIn);
