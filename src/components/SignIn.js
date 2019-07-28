@@ -10,7 +10,14 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-import {signInUser, addUser, modifyUser} from '../actions/signInActions';
+import {
+    changeLogin,
+    changePassword,
+    changeIcon,
+    signInUser,
+    addUser,
+    modifyUser
+} from '../actions/signInActions';
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -63,6 +70,7 @@ function SignIn(props) {
                         autoComplete="username"
                         autoFocus
                         value={login}
+                        onChange={event => dispatch(changeLogin(event.target.value))}
                     />
                     <TextField
                         variant="outlined"
@@ -75,6 +83,7 @@ function SignIn(props) {
                         id="password"
                         autoComplete="current-password"
                         value={password}
+                        onChange={event => dispatch(changePassword(event.target.value))}
                     />
                     <Button
                         type="button"
@@ -95,6 +104,7 @@ function SignIn(props) {
                         id="icon"
                         autoComplete="photo"
                         value={icon}
+                        onChange={event => dispatch(changeIcon(event.target.value))}
                     />
                     <Button
                         type="button"

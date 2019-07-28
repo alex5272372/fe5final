@@ -1,40 +1,57 @@
 import {actionTypes} from '../actions';
 
+function createUser() {
+    return {
+        _id: '',
+        login: '',
+        password: '',
+        icon: '',
+        subs: []
+    }
+}
+
 const initialState = {
-    index: -1,
-    allUsers: [
-        {
-            login: 'Alex',
-            password: '123',
-            icon: './myIcon.png',
-            subs: []
-        }
-    ]
+    index: 0,
+    allUsers: [createUser()],
+    isFetching: false
 };
 
 function usersReducer(state = initialState, action) {
     const newUsers = state.allUsers.map(value => ({...value, subs: value.subs.slice()}));
 
     switch (action.type) {
-        case actionTypes.ADD_USER:
-            newUsers.push({...action.payload, subs: []});
+         case actionTypes.GET_USERS_SUCCESS:
+            break;
 
-            return {
-                index: newUsers.length - 1,
-                allUsers: newUsers
-            };
+         case actionTypes.CHANGE_LOGIN:
+            newUsers[state.index].login = action.payload;
+            break;
+
+        case actionTypes.CHANGE_PASSWORD:
+            newUsers[state.index].password = action.payload;
+            break;
+
+        case actionTypes.CHANGE_ICON:
+            newUsers[state.index].icon = action.payload;
+            break;
+
+        case actionTypes.ADD_USER:
+            newUsers.push(createUser());
+            break;
 
         case actionTypes.MODIFY_USER:
             newUsers[state.index] = {...newUsers[state.index], ...action.payload};
-
-            return {
-                index: state.index,
-                allUsers: newUsers
-            };
+            break;
 
         default:
             return state;
     }
+
+    return {
+        index: newUsers.length - 1,
+        allUsers: newUsers,
+        isFetching: state.isFetching
+    };
 }
 
 export default usersReducer;

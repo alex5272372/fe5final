@@ -1,13 +1,27 @@
 import {actionTypes} from '../actions';
 
-const initialState = {
-    index: -1,
-    allPosts: [{
+/*function createComment() {
+    return {
+        date: '',
+        user: '',
+        comment: ''
+    }
+}*/
+
+function createPost() {
+    return {
+        _id: '',
         postDate: '',
         photo: '',
         likes: 0,
-        comments: [],
-    }]
+        comments: []
+    }
+}
+
+const initialState = {
+    index: 0,
+    allPosts: [createPost()],
+    isFetching: false
 };
 
 function postsReducer(state = initialState, action) {
@@ -15,15 +29,18 @@ function postsReducer(state = initialState, action) {
 
     switch (action.type) {
         case actionTypes.NEW_LIKE:
-            newPosts[0].likes++;
+            newPosts[state.index].likes++;
+            break;
 
-            return {
-                index: state.index,
-                allPosts: newPosts
-            };
         default:
             return state;
     }
+
+    return {
+        index: newPosts.length - 1,
+        allPosts: newPosts,
+        isFetching: state.isFetching
+    };
 }
 
 export default postsReducer;
