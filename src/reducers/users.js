@@ -23,18 +23,6 @@ function usersReducer(state = initialState, action) {
          case actionTypes.GET_USERS_SUCCESS:
             break;
 
-         case actionTypes.CHANGE_LOGIN:
-            newUsers[state.index].login = action.payload;
-            break;
-
-        case actionTypes.CHANGE_PASSWORD:
-            newUsers[state.index].password = action.payload;
-            break;
-
-        case actionTypes.CHANGE_ICON:
-            newUsers[state.index].icon = action.payload;
-            break;
-
         case actionTypes.ADD_USER:
             newUsers.push(createUser());
             break;

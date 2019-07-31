@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
 
-import SignIn from '../components/SignIn';
+import SignInContainer from '../containers/SignInContainer';
 import Page from '../components/Page';
 import Post from '../components/Post';
 import User from '../components/User';
@@ -31,7 +31,7 @@ class App extends Component {
                     <Route path='/page' component={Page}/>
                     <Route path='/post' component={Post}/>
                     <Route path='/user' component={User}/>
-                    <Route path='/' component={SignIn}/>
+                    <Route path='/' component={SignInContainer}/>
                 </Switch>
             </main>
         );

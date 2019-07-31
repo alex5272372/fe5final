@@ -11,9 +11,6 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import {
-    changeLogin,
-    changePassword,
-    changeIcon,
     signInUser,
     addUser,
     modifyUser
@@ -46,7 +43,14 @@ const useStyles = makeStyles(theme => ({
 
 function SignIn(props) {
     const classes = useStyles();
-    const {login, password, icon, dispatch} = props;
+    const {login,
+        password,
+        icon,
+        onChangeLogin,
+        onChangePassword,
+        onChangeIcon,
+        dispatch
+    } = props;
 
     return (
         <Container component="main" maxWidth="xs">
@@ -70,7 +74,7 @@ function SignIn(props) {
                         autoComplete="username"
                         autoFocus
                         value={login}
-                        onChange={event => dispatch(changeLogin(event.target.value))}
+                        onChange={onChangeLogin}
                     />
                     <TextField
                         variant="outlined"
@@ -83,7 +87,7 @@ function SignIn(props) {
                         id="password"
                         autoComplete="current-password"
                         value={password}
-                        onChange={event => dispatch(changePassword(event.target.value))}
+                        onChange={onChangePassword}
                     />
                     <Button
                         type="button"
@@ -104,7 +108,7 @@ function SignIn(props) {
                         id="icon"
                         autoComplete="photo"
                         value={icon}
-                        onChange={event => dispatch(changeIcon(event.target.value))}
+                        onChange={onChangeIcon}
                     />
                     <Button
                         type="button"
@@ -132,12 +136,4 @@ function SignIn(props) {
     );
 }
 
-function mapStateToProps(state) {
-    return {
-        login: state.users.allUsers[0].login,
-        password: state.users.allUsers[0].password,
-        icon: state.users.allUsers[0].icon
-    };
-}
-
-export default connect(mapStateToProps)(SignIn);
+export default connect()(SignIn);

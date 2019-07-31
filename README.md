@@ -49,10 +49,15 @@ module.exports = {
 
 [Документация по Create React App](https://facebook.github.io/create-react-app/)
 
+### Веб-сервер: Express
+[Документация](https://expressjs.com/ru/)
+
 ### Сервис публикации приложений: Heroku
 [Приложение](https://fe5final.herokuapp.com/)
 
 [Администрирование](https://dashboard.heroku.com/apps/fe5final)
+
+[Deploy React and Express to Heroku](https://daveceddia.com/deploy-react-express-app-heroku/)
 
 ### База данных: MongoDB
 [Администрирование](https://cloud.mongodb.com/v2/5cff8dc0cf09a2451565a0d8#clusters)
