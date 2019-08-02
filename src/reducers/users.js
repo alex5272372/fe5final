@@ -10,18 +10,21 @@ function createUser() {
     }
 }
 
-const initialState = {
+export const initialState = {
     index: 0,
     allUsers: [createUser()],
     isFetching: false
 };
 
-function usersReducer(state = initialState, action) {
+export function usersReducer(state = initialState, action) {
     const newUsers = state.allUsers.map(value => ({...value, subs: value.subs.slice()}));
 
     switch (action.type) {
          case actionTypes.GET_USERS_SUCCESS:
-            break;
+            return { // for users.test.js
+                ...initialState,
+                isFetching: true
+            };
 
         case actionTypes.ADD_USER:
             newUsers.push(createUser());
@@ -41,5 +44,3 @@ function usersReducer(state = initialState, action) {
         isFetching: state.isFetching
     };
 }
-
-export default usersReducer;

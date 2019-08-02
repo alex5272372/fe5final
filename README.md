@@ -18,6 +18,7 @@
 ### Формат файла настроек `./src/settings.js`
 ```js
 module.exports = {
+    appHostName: 'https://fe5final.herokuapp.com',
     dbName: 'photobook',
     dbLogin: 'Your login',
     dbPassword: 'Your password'
@@ -119,3 +120,5 @@ module.exports = {
 
 ### Библиотека для управления состоянием: React Redux
 [Документация](https://maxfarseer.gitbooks.io/redux-course-ru-v2/content/sozdanie.html)
+
+[Unit тестирование redux экшенов и редьюсеров](https://maxpfrontend.ru/vebinary/unit-testirovanie-redux-ekshenov-i-redyuserov/)
