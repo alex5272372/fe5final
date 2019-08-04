@@ -1,7 +1,12 @@
 {
   "name": "fe5final",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^4.2.1",
     "@material-ui/icons": "^4.2.1",
