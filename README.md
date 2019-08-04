@@ -3,7 +3,7 @@
 
 [Работа в команде на финальном проекте](https://dan-it.gitlab.io/fe-book/teamwork/final.html)
 
-[README.md для Create React App](./CREATE_REACT_APP.md)
+[README.md для Create React App](client/README.md)
 
 ## Инструкция по запуску проекта
 ### Последовательность действий

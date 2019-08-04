@@ -1,44 +1,19 @@
 {
-  "name": "fe5final",
-  "version": "0.1.0",
-  "private": true,
+  "name": "fe5final1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@material-ui/core": "^4.2.1",
-    "@material-ui/icons": "^4.2.1",
-    "mongodb": "^3.3.0-beta2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-redux": "^7.1.0",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1",
-    "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0",
-    "serve": "^11.1.0"
+    "express": "^4.17.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "test-jest": "jest"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "redux-logger": "^3.0.6"
-  },
-  "proxy": "http://localhost:3000"
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  }
 }
