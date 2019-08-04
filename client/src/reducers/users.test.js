@@ -3,8 +3,7 @@ import thunk from 'redux-thunk';
 
 import {initialState, usersReducer} from './users';
 import {actionTypes} from '../actions';
-
-const settings = require('../settings');
+import {APP_HOST_NAME} from '../settings';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -17,7 +16,7 @@ describe('users reducer', () => {
     });
 
     it(actionTypes.GET_USERS_SUCCESS, () => {
-        fetchMock.getOnce(`${settings.appHostName}/users`, {
+        fetchMock.getOnce(`${APP_HOST_NAME}/users`, {
             headers: {'content-type': 'application/json'},
             body: {data: [1, 2, 3], status: 'ok'}
         });

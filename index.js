@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const db = require('./db');
 
 const app = express();
 
@@ -7,12 +8,8 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Put all API endpoints under '/api'
-app.get('/api/users', (req, res) => {
-    const count = 5;
-
-    res.json({users: 'users'});
-
-    console.log(`Sent users`);
+app.get('/api/users', async function(req, res) {
+    res.json(await db.getUsers());
 });
 
 // The "catchall" handler: for any request that doesn't

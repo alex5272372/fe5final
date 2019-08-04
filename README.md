@@ -9,21 +9,26 @@
 ### Последовательность действий
 1. Установить [Node.js](https://nodejs.org/en/download/)
 2. Склонировать проект с репозитория https://github.com/alex5272372/fe5final.git
-3. Создать файл с настройками `./client/src/settings.js`
-4. В папке проекта выполнить команду установки зависимостей `npm install`
-5. В папке `client` выполнить команду установки зависимостей `npm install`
-6. В папке `client` выполнить команду сборки проекта `npm run build`
-7. В папке проекта выполнить команду запуска приложения `npm start`
-8. Запустить приложение по адресу http://localhost:5000
+3. Создать файл с настройками серверной части `./settings.js`
+4. Создать файл с настройками клиентской части `./client/src/settings.js`
+5. В папке проекта выполнить команду установки зависимостей `npm install`
+6. В папке `client` выполнить команду установки зависимостей `npm install`
+7. В папке `client` выполнить команду сборки проекта `npm run build`
+8. В папке проекта выполнить команду запуска приложения `npm start`
+9. Запустить приложение по адресу http://localhost:5000
 
-### Формат файла настроек `./src/settings.js`
+### Формат файла настроек серверной части `./settings.js`
 ```js
 module.exports = {
-    appHostName: 'https://fe5final.herokuapp.com',
     dbName: 'photobook',
     dbLogin: 'Your login',
     dbPassword: 'Your password'
 };
+```
+
+### Формат файла настроек клиентской части `./client/src/settings.js`
+```js
+export const APP_HOST_NAME = 'https://fe5final.herokuapp.com';
 ```
 
 ## Состав участников проекта
