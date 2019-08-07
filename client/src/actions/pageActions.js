@@ -1,3 +1,5 @@
+import {APP_HOST_NAME} from '../settings';
+
 export const pageTypes = {
     GET_USERS_REQUEST: 'GET_USERS_REQUEST',
     GET_USERS_SUCCESS: 'GET_USERS_SUCCESS',
@@ -12,7 +14,7 @@ export function getUsers() {
             payload: 'Loading users...'
         });
 
-        fetch('https://swapi.co/api/people/1/')
+        fetch(`${APP_HOST_NAME}/api/users/`)
             .then(response => response.json())
                     .then(users => dispatch({
                     type: pageTypes.GET_USERS_SUCCESS,

@@ -20,11 +20,16 @@ export function usersReducer(state = initialState, action) {
     const newUsers = state.allUsers.map(value => ({...value, subs: value.subs.slice()}));
 
     switch (action.type) {
-         case actionTypes.GET_USERS_SUCCESS:
-            return { // for users.test.js
-                ...initialState,
-                isFetching: true
-            };
+        case actionTypes.GET_USERS_SUCCESS:
+            /*return { // for users.test.js
+             ...initialState,
+             isFetching: true
+            };*/
+
+             return {
+                 ...action.payload,
+                 isFetching: true
+             };
 
         case actionTypes.ADD_USER:
             newUsers.push(createUser());

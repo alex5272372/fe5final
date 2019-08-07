@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
 
 import SignInContainer from './SignInContainer';
-import Page from '../components/Page';
+import PageContainer from './PageContainer';
 import Post from '../components/Post';
 import User from '../components/User';
 
@@ -28,7 +28,7 @@ class App extends Component {
             <main>
                 <Header/>
                 <Switch>
-                    <Route path='/page' component={Page}/>
+                    <Route path='/page' component={PageContainer}/>
                     <Route path='/post' component={Post}/>
                     <Route path='/user' component={User}/>
                     <Route path='/' component={SignInContainer}/>
