@@ -12,6 +12,7 @@ function createPost() {
     return {
         _id: '',
         postDate: '',
+        postUser: '',
         photo: '',
         likes: 0,
         comments: []

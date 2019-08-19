@@ -37,18 +37,15 @@ export const APP_HOST_NAME = 'https://fe5final.herokuapp.com';
 |:------:|:---:|:-----:|:-------:|
 | 1 | Николаенко Алексей | alex5272372@gmail.com | +38 (067) 527-23-72 |
 | 2 | Кондратюк Михаил | makenotik@gmail.com |  |
-| 3 |  |  |  |
 
 ### Задание для студента 1
 1. Базовая архитектура приложения.
-2. Сверстать главную страницу `Page`.
+2. Сверстать модальное окно авторизации `SignIn` на основании [примера](https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/sign-in).
+3. Сверстать главную страницу `Page`.
 
 ### Задание для студента 2
 1. Сверстать страницу постов конкретного человека `User`.
-
-### Задание для студента 3
-1. Сверстать модальное окно авторизации `SignIn` на основании [примера](https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/sign-in).
-2. Сверстать модальное окно поста `Post`.
+2. Сверстать [модальное окно](https://material-ui.com/ru/components/dialogs/) поста `Post`.
 
 ## Список использованных технологий
 ### Cервер приложений: Node.js
@@ -91,6 +88,7 @@ export const APP_HOST_NAME = 'https://fe5final.herokuapp.com';
 ```json
 {
     "postDate": "2019-03-01T10:15:00",
+    "postUser": "5d32c7d01c9d4400005aa28b",
     "photo": "./public/img/photo1.png",
     "likes": [
       "5d32c7d01c9d4400005aa28b",

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import Page from '../components/Page';
+import User from '../components/User';
 
-class PageContainer extends Component {
+export default class UserContainer extends Component {
     constructor(props) {
         super(props);
 
@@ -20,12 +20,10 @@ class PageContainer extends Component {
         const {comment} = this.state;
 
         return (
-            <Page
+            <User
                 comment={comment}
                 onChangeComment={this.onChangeComment}
             />
         )
     }
 }
-
-export default PageContainer;

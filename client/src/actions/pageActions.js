@@ -1,31 +1,18 @@
 import {APP_HOST_NAME} from '../settings';
 
 export const pageTypes = {
-    GET_USERS_REQUEST: 'GET_USERS_REQUEST',
-    GET_USERS_SUCCESS: 'GET_USERS_SUCCESS',
-    GET_USERS_FAILURE: 'GET_USERS_FAILURE',
+    GET_USERS: 'GET_USERS',
     NEW_LIKE: 'NEW_LIKE'
 };
 
 export function getUsers() {
     return (dispatch) => {
-        dispatch({
-            type: pageTypes.GET_USERS_REQUEST,
-            payload: 'Loading users...'
-        });
-
-        fetch(`${APP_HOST_NAME}/api/users/`)
+        fetch(`https://cors-anywhere.herokuapp.com/${APP_HOST_NAME}/api/users/`)
             .then(response => response.json())
-                    .then(users => dispatch({
-                    type: pageTypes.GET_USERS_SUCCESS,
-                    payload: users
-                }))
-            .catch(error => dispatch({
-                    type: pageTypes.GET_USERS_FAILURE,
-                    payload: error,
-                    error: true
-                })
-            )
+            .then(users => dispatch({
+                type: pageTypes.GET_USERS,
+                payload: users
+            }))
     }
 }
 

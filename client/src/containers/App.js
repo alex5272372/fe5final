@@ -3,8 +3,7 @@ import {Switch, Route} from 'react-router-dom';
 
 import SignInContainer from './SignInContainer';
 import PageContainer from './PageContainer';
-import Post from '../components/Post';
-import User from '../components/User';
+import UserContainer from './UserContainer';
 
 // For debugging {
 import {Link} from 'react-router-dom'
@@ -14,7 +13,6 @@ const Header = () => (
             <ul>
                 <li><Link to='/'>Sign in</Link></li>
                 <li><Link to='/page'>Main page</Link></li>
-                <li><Link to='/post'>Card of post</Link></li>
                 <li><Link to='/user'>User posts</Link></li>
             </ul>
         </nav>
@@ -29,8 +27,7 @@ class App extends Component {
                 <Header/>
                 <Switch>
                     <Route path='/page' component={PageContainer}/>
-                    <Route path='/post' component={Post}/>
-                    <Route path='/user' component={User}/>
+                    <Route path='/user' component={UserContainer}/>
                     <Route path='/' component={SignInContainer}/>
                 </Switch>
             </main>
