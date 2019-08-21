@@ -9,7 +9,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-function Post() {
+function UserPost() {
   const [open, setOpen] = React.useState(false);
 
   function handleClickOpen() {
@@ -60,4 +60,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(Post)
+export default connect(mapStateToProps)(UserPost)

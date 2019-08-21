@@ -1,5 +1,7 @@
-import React, {Component} from 'react'
-import User from '../components/User';
+import React, {Component, Fragment} from 'react'
+import UserCard from '../components/UserCard';
+import UserPosts from '../components/UserPosts';
+import UserPost from '../components/UserPost';
 
 export default class UserContainer extends Component {
     constructor(props) {
@@ -20,10 +22,11 @@ export default class UserContainer extends Component {
         const {comment} = this.state;
 
         return (
-            <User
-                comment={comment}
-                onChangeComment={this.onChangeComment}
-            />
+            <Fragment>
+                <UserCard />
+                <UserPosts />
+                <UserPost />
+            </Fragment>
         )
     }
 }
