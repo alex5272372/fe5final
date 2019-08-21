@@ -13,6 +13,9 @@ import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
 import {green, lightBlue, yellow} from "@material-ui/core/colors";
 
+import PagePosts from './PagePosts';
+import PageUsers from './PageUsers';
+
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: lightBlue,
@@ -40,8 +43,9 @@ function Page(props) {
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
-            <Grid item xs={8} className={classes.posts} />
-            <Grid item xs={4} className={classes.users}>
+            <Grid item xs={8} className={classes.posts}>
+                <PagePosts />
+
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -64,6 +68,10 @@ function Page(props) {
                 >
                     More redux likes
                 </Button>
+            </Grid>
+
+            <Grid item xs={4} className={classes.users}>
+                <PageUsers />
 
                 <Button
                     type="button"

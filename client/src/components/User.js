@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import UserPosts from './UserPosts';
 import Post from './Post';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -24,21 +25,7 @@ function User(props) {
 
     return (
         <React.Fragment>
-            <Grid container component="main" className={classes.root}>
-                <CssBaseline />
-                <Grid item xs={4} className={classes.post}>
-                    Photo 1
-                </Grid>
-                <Grid item xs={4} className={classes.post}>
-                    Photo 2
-                </Grid>
-                <Grid item xs={4} className={classes.post}>
-                    Photo 3
-                </Grid>
-                <Grid item xs={4} className={classes.post}>
-                    Photo 4
-                </Grid>
-            </Grid>
+            <UserPosts />
             <Post />
         </React.Fragment>
     );

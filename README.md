@@ -44,7 +44,7 @@ export const APP_HOST_NAME = 'https://fe5final.herokuapp.com';
 3. Сверстать главную страницу `Page`.
 
 ### Задание для студента 2
-1. Сверстать страницу постов конкретного человека `User`.
+1. Сверстать страницу постов конкретного человека `User` с использованием [сети изображений](https://material-ui.com/ru/components/grid-list/).
 2. Сверстать [модальное окно](https://material-ui.com/ru/components/dialogs/) поста `Post`.
 
 ## Список использованных технологий
