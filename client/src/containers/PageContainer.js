@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import Page from '../components/Page';
+import UserCard from "../components/UserCard";
 
 class PageContainer extends Component {
     constructor(props) {
@@ -20,10 +21,13 @@ class PageContainer extends Component {
         const {comment} = this.state;
 
         return (
-            <Page
-                comment={comment}
-                onChangeComment={this.onChangeComment}
-            />
+            <Fragment>
+                <UserCard />
+                <Page
+                    comment={comment}
+                    onChangeComment={this.onChangeComment}
+                />
+            </Fragment>
         )
     }
 }
