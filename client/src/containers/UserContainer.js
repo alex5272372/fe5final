@@ -1,9 +1,11 @@
 import React, {Component, Fragment} from 'react'
+import {connect} from "react-redux";
+
 import UserCard from '../components/UserCard';
 import UserPosts from '../components/UserPosts';
 import UserPost from '../components/UserPost';
 
-export default class UserContainer extends Component {
+class UserContainer extends Component {
     constructor(props) {
         super(props);
 
@@ -23,10 +25,18 @@ export default class UserContainer extends Component {
 
         return (
             <Fragment>
-                <UserCard />
+                <UserCard index={this.props.index} />
                 <UserPosts />
                 <UserPost />
             </Fragment>
         )
     }
 }
+
+function mapStateToProps(store) {
+    return {
+        index: store.users.index
+    }
+}
+
+export default connect(mapStateToProps)(UserContainer);

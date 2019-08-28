@@ -76,7 +76,7 @@ export const APP_HOST_NAME = 'https://fe5final.herokuapp.com';
 {
     "login": "alex",
     "password": "123",
-    "icon": "./public/img/alexIcon.png",
+    "icon": "./img/alexIcon.png",
     "subs": [
       "5d32c8321c9d4400005aa28c"
     ]
@@ -89,7 +89,7 @@ export const APP_HOST_NAME = 'https://fe5final.herokuapp.com';
 {
     "postDate": "2019-03-01T10:15:00",
     "postUser": "5d32c7d01c9d4400005aa28b",
-    "photo": "./public/img/photo1.png",
+    "photo": "./img/photo1.png",
     "likes": [
       "5d32c7d01c9d4400005aa28b",
       "5d32c8321c9d4400005aa28c"

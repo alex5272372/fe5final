@@ -1,3 +1,5 @@
+import {APP_HOST_NAME} from '../settings';
+
 export const signInTypes = {
     SIGN_IN_USER: 'SIGN_IN_USER',
     ADD_USER: 'ADD_USER',
@@ -5,9 +7,17 @@ export const signInTypes = {
 };
 
 export function signInUser(login, password) {
-    return {
-        type: signInTypes.ADD_USER,
-        payload: {login, password}
+    return (dispatch) => {
+        fetch(`https://cors-anywhere.herokuapp.com/${APP_HOST_NAME}/api/users/`)
+            .then(response => response.json())
+            .then(allUsers => {
+                const index = allUsers.findIndex(user => user.login == login)
+
+                return dispatch({
+                        type: signInTypes.SIGN_IN_USER,
+                        payload: {index, allUsers}
+                    })
+            })
     }
 }
 

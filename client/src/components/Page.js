@@ -91,7 +91,7 @@ function Page(props) {
 
 function mapStateToProps(store) {
     return {
-        users: store.users,
+        users: store.users
     }
 }
 

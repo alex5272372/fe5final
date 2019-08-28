@@ -12,8 +12,8 @@ function createUser() {
 
 export const initialState = {
     index: 0,
-    allUsers: [createUser()],
-    isFetching: false
+    postIndex: 0,
+    allUsers: []
 };
 
 export function usersReducer(state = initialState, action) {
@@ -22,14 +22,20 @@ export function usersReducer(state = initialState, action) {
     switch (action.type) {
         case actionTypes.GET_USERS:
             /*return { // for users.test.js
-             ...initialState,
-             isFetching: true
+             ...initialState
             };*/
 
              return {
                  index: action.payload.length - 1,
-                 allUsers: action.payload,
-                 isFetching: true
+                 postIndex: action.payload.length - 1,
+                 allUsers: action.payload
+             };
+
+        case actionTypes.SIGN_IN_USER:
+             return {
+                 index: action.payload.index,
+                 postIndex: action.payload.index,
+                 allUsers: action.payload.allUsers
              };
 
         case actionTypes.ADD_USER:
@@ -46,7 +52,7 @@ export function usersReducer(state = initialState, action) {
 
     return {
         index: newUsers.length - 1,
-        allUsers: newUsers,
-        isFetching: state.isFetching
+        postIndex: newUsers.length - 1,
+        allUsers: newUsers
     };
 }

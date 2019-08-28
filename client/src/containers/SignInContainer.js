@@ -1,7 +1,10 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+import {Redirect} from 'react-router-dom';
+import {connect} from "react-redux";
+
 import SignIn from '../components/SignIn';
 
-export default class SignInContainer extends Component {
+class SignInContainer extends Component {
     constructor(props) {
         super(props);
 
@@ -31,14 +34,25 @@ export default class SignInContainer extends Component {
     render() {
         const {login, password, icon} = this.state;
         return (
-            <SignIn
-                login={login}
-                password={password}
-                icon={icon}
-                onChangeLogin={this.onChangeLogin}
-                onChangePassword={this.onChangePassword}
-                onChangeIcon={this.onChangeIcon}
-            />
+            <Fragment>
+                <SignIn
+                    login={login}
+                    password={password}
+                    icon={icon}
+                    onChangeLogin={this.onChangeLogin}
+                    onChangePassword={this.onChangePassword}
+                    onChangeIcon={this.onChangeIcon}
+                />
+                {this.props.isFetching && <Redirect to="/page" />}
+            </Fragment>
         )
     }
 }
+
+function mapStateToProps(store) {
+    return {
+        isFetching: store.users.allUsers.length !== 0
+    }
+}
+
+export default connect(mapStateToProps)(SignInContainer);

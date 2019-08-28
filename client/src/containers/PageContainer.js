@@ -1,4 +1,6 @@
 import React, {Component, Fragment} from 'react'
+import {connect} from "react-redux";
+
 import Page from '../components/Page';
 import UserCard from "../components/UserCard";
 
@@ -22,7 +24,7 @@ class PageContainer extends Component {
 
         return (
             <Fragment>
-                <UserCard />
+                <UserCard index={this.props.index} />
                 <Page
                     comment={comment}
                     onChangeComment={this.onChangeComment}
@@ -32,4 +34,10 @@ class PageContainer extends Component {
     }
 }
 
-export default PageContainer;
+function mapStateToProps(store) {
+    return {
+        index: store.users.index
+    }
+}
+
+export default connect(mapStateToProps)(PageContainer);
