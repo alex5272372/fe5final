@@ -62,6 +62,11 @@ function SignIn(props) {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
+                {props.error &&
+                    <Typography component="h1" variant="h5" color="error">
+                        {props.error}
+                    </Typography>
+                }
                 <form className={classes.form} noValidate>
                     <TextField
                         variant="outlined"
@@ -126,7 +131,7 @@ function SignIn(props) {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => dispatch(modifyUser(password, icon))}
+                        onClick={() => dispatch(modifyUser(login, password, icon))}
                     >
                         update account
                     </Button>
@@ -136,4 +141,10 @@ function SignIn(props) {
     );
 }
 
-export default connect()(SignIn);
+function mapStateToProps(store) {
+    return {
+        error: store.users.error
+    }
+}
+
+export default connect(mapStateToProps)(SignIn);

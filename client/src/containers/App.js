@@ -11,7 +11,7 @@ const Header = () => (
     <header>
         <nav>
             <ul>
-                <li><Link to='/'>Sign in</Link></li>
+                <li><Link to='/signin'>Sign in</Link></li>
                 <li><Link to='/page'>Main page</Link></li>
                 <li><Link to='/user'>User posts</Link></li>
             </ul>
@@ -28,6 +28,7 @@ class App extends Component {
                 <Switch>
                     <Route path='/page' component={PageContainer}/>
                     <Route path='/user' component={UserContainer}/>
+                    <Route path='/signin' component={SignInContainer}/>
                     <Route path='/' component={SignInContainer}/>
                 </Switch>
             </main>

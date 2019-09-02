@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react'
+import {Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 
 import UserCard from '../components/UserCard';
@@ -23,19 +24,27 @@ class UserContainer extends Component {
     render() {
         const {comment} = this.state;
 
-        return (
-            <Fragment>
-                <UserCard index={this.props.index} />
-                <UserPosts />
-                <UserPost />
-            </Fragment>
-        )
+        if(this.props.isFetching) {
+            return (
+                <Fragment>
+                    <UserCard index={this.props.index} />
+                    <UserPosts index={this.props.index} />
+                    <UserPost postIndex={this.props.postIndex}/>
+                </Fragment>
+            )
+        } else {
+            return (
+                <Redirect to="/signin" />
+            )
+        }
     }
 }
 
 function mapStateToProps(store) {
     return {
-        index: store.users.index
+        index: store.users.index,
+        postIndex: store.users.postIndex,
+        isFetching: store.users.allUsers.length !== 0
     }
 }
 

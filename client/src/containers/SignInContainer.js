@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 
@@ -33,8 +33,13 @@ class SignInContainer extends Component {
 
     render() {
         const {login, password, icon} = this.state;
-        return (
-            <Fragment>
+
+        if (this.props.isFetching) {
+            return (
+                <Redirect to="/page" />
+            )
+        } else {
+            return (
                 <SignIn
                     login={login}
                     password={password}
@@ -43,9 +48,8 @@ class SignInContainer extends Component {
                     onChangePassword={this.onChangePassword}
                     onChangeIcon={this.onChangeIcon}
                 />
-                {this.props.isFetching && <Redirect to="/page" />}
-            </Fragment>
-        )
+            )
+        }
     }
 }
 

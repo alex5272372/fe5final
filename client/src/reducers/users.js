@@ -1,18 +1,9 @@
 import {actionTypes} from '../actions';
 
-function createUser() {
-    return {
-        _id: '',
-        login: '',
-        password: '',
-        icon: '',
-        subs: []
-    }
-}
-
 export const initialState = {
     index: 0,
     postIndex: 0,
+    error: '',
     allUsers: []
 };
 
@@ -28,6 +19,7 @@ export function usersReducer(state = initialState, action) {
              return {
                  index: action.payload.length - 1,
                  postIndex: action.payload.length - 1,
+                 error: '',
                  allUsers: action.payload
              };
 
@@ -35,24 +27,26 @@ export function usersReducer(state = initialState, action) {
              return {
                  index: action.payload.index,
                  postIndex: action.payload.index,
+                 error: '',
                  allUsers: action.payload.allUsers
              };
 
-        case actionTypes.ADD_USER:
-            newUsers.push(createUser());
-            break;
-
-        case actionTypes.MODIFY_USER:
-            newUsers[state.index] = {...newUsers[state.index], ...action.payload};
-            break;
+        case actionTypes.SIGN_IN_ERROR:
+             return {
+                 index: 0,
+                 postIndex: 0,
+                 error: action.payload.error,
+                 allUsers: []
+             };
 
         default:
             return state;
     }
 
     return {
-        index: newUsers.length - 1,
-        postIndex: newUsers.length - 1,
+        index: state.index,
+        postIndex: state.postIndex,
+        error: state.error,
         allUsers: newUsers
     };
 }

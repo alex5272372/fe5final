@@ -18,6 +18,24 @@ app.get('/api/users', async function(req, res) {
     res.json(await db.getUsers());
 });
 
+app.post('api/user', async function(req, res) {
+    await db.addUser({
+        login: req.body.login,
+        password: req.body.password,
+        icon: req.body.icon,
+        subs: []
+    });
+});
+
+app.put('api/user/:id', async function(req, res) {
+    await db.editUser(id, {
+        login: req.body.login,
+        password: req.body.password,
+        icon: req.body.icon,
+        subs: req.body.subs
+    });
+});
+
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
