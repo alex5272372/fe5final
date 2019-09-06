@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./db');
 
@@ -12,13 +13,15 @@ app.use(function(req, res, next) {
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 // Put all API endpoints under '/api'
 app.get('/api/users', async function(req, res) {
     res.json(await db.getUsers());
 });
 
-app.post('api/user', async function(req, res) {
+app.post('/api/user', async function(req, res) {
     await db.addUser({
         login: req.body.login,
         password: req.body.password,
@@ -27,7 +30,7 @@ app.post('api/user', async function(req, res) {
     });
 });
 
-app.put('api/user/:id', async function(req, res) {
+app.put('/api/user/:id', async function(req, res) {
     await db.editUser(id, {
         login: req.body.login,
         password: req.body.password,

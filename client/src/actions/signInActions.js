@@ -6,7 +6,7 @@ export const signInTypes = {
 };
 
 function signInDispatch(dispatch, login, password) {
-   fetch(`https://cors-anywhere.herokuapp.com/${APP_HOST_NAME}/api/users/`)
+   fetch(`${APP_HOST_NAME}/api/users/`)
        .then(response => response.json())
        .then(allUsers => {
            const index = allUsers.findIndex(user => user.login == login);
@@ -30,7 +30,7 @@ export function signInUser(login, password) {
 }
 
 export function addUser(login, password, icon) {
-   fetch(`https://cors-anywhere.herokuapp.com/${APP_HOST_NAME}/api/users/`,
+   fetch(`${APP_HOST_NAME}/api/user/`,
        {
             method: 'POST',
             headers: {'Content-Type': 'application/json;charset=utf-8'},
@@ -40,7 +40,7 @@ export function addUser(login, password, icon) {
 }
 
 export function modifyUser(login, password, icon) {
-   fetch(`https://cors-anywhere.herokuapp.com/${APP_HOST_NAME}/api/users/`,
+   fetch(`${APP_HOST_NAME}/api/users/`,
        {
             method: 'PUT',
             headers: {'Content-Type': 'application/json;charset=utf-8'},
