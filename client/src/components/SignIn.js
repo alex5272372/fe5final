@@ -105,11 +105,11 @@ function SignIn(props) {
                         sign in
                     </Button>
                     <TextField
+                        type="file"
                         variant="outlined"
                         margin="normal"
                         fullWidth
                         name="icon"
-                        label="Photo"
                         id="icon"
                         autoComplete="photo"
                         value={icon}

@@ -30,13 +30,15 @@ export function signInUser(login, password) {
 }
 
 export function addUser(login, password, icon) {
-   return dispatch => fetch(`${APP_HOST_NAME}/api/user/`,
-       {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {'Content-Type': 'application/json;charset=utf-8'},
-            body: JSON.stringify({login, password, icon})
-        })
+   const formElement = document.querySelector('form');
+   const formData = new FormData(formElement);
+
+   const options = {
+       method: 'POST',
+       body: formData
+   }
+
+   return dispatch => fetch(`${APP_HOST_NAME}/api/user/`, options)
        .then(() => signInDispatch(dispatch, login, password));
 }
 
@@ -44,9 +46,14 @@ export function modifyUser(login, password, icon) {
    return dispatch => fetch(`${APP_HOST_NAME}/api/users/`,
        {
             method: 'PUT',
-            mode: 'no-cors',
-            headers: {'Content-Type': 'application/json;charset=utf-8'},
-            body: JSON.stringify({login, password, icon})
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+                login: login,
+                password: password,
+                icon: icon
+            })
         })
        .then(() => signInDispatch(dispatch, login, password));
 }

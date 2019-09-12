@@ -9,7 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import iconsData from '../iconsData';
+import {APP_HOST_NAME} from '../settings';
 
 const useStyles = makeStyles({
   media: {
@@ -33,7 +33,7 @@ function UserCard(props) {
   return (
     <Card>
       <CardActionArea>
-        <CardMedia image={iconsData[props.index]} className={classes.media} />
+        <CardMedia image={`${APP_HOST_NAME}/uploads/${allUsers[props.index].icon}`} className={classes.media} />
         <CardContent className={classes.content}>
           <Typography variant="h5" component="h2">
             {allUsers[props.index].login}
