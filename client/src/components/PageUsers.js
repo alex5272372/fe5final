@@ -23,13 +23,13 @@ function PageUsers(props) {
   const {index, allUsers} = props.users;
 
   const subItems = allUsers.map((val, i) =>
-    <ListItem alignItems="flex-start">
+    <ListItem alignItems="flex-start" key={val._id}>
       <UserCard index={i} />
     </ListItem>
   ).filter((val, i) => i !== index && allUsers[index].subs.includes(allUsers[i]._id));
 
   const unsubItems = allUsers.map((val, i) =>
-    <ListItem alignItems="flex-start">
+    <ListItem alignItems="flex-start" key={val._id}>
       <UserCard index={i} />
     </ListItem>
   ).filter((val, i) => i !== index && !allUsers[index].subs.includes(allUsers[i]._id));

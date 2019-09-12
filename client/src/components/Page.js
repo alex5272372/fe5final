@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import {
-    getUsers,
     newLike
 } from "../actions/pageActions";
 
@@ -36,8 +35,7 @@ function Page(props) {
     const {
         comment,
         onChangeComment,
-        dispatch,
-        users
+        dispatch
     } = props;
 
     return (
@@ -72,27 +70,13 @@ function Page(props) {
 
             <Grid item xs={4} className={classes.users}>
                 <PageUsers />
-
-                <Button
-                    type="button"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                    onClick={() => dispatch(getUsers())}
-                >
-                    Get users
-                </Button>
-
             </Grid>
         </Grid>
     );
 }
 
 function mapStateToProps(store) {
-    return {
-        users: store.users
-    }
+    return {}
 }
 
 export default connect(mapStateToProps)(Page);

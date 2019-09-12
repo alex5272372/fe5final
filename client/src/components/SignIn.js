@@ -12,8 +12,7 @@ import Container from '@material-ui/core/Container';
 
 import {
     signInUser,
-    addUser,
-    modifyUser
+    addUser
 } from '../actions/signInActions';
 
 const useStyles = makeStyles(theme => ({
@@ -124,16 +123,6 @@ function SignIn(props) {
                         onClick={() => dispatch(addUser(login, password, icon))}
                     >
                         create account
-                    </Button>
-                    <Button
-                        type="button"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        onClick={() => dispatch(modifyUser(login, password, icon))}
-                    >
-                        update account
                     </Button>
                </form>
             </div>

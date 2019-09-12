@@ -9,7 +9,7 @@ function signInDispatch(dispatch, login, password) {
    fetch(`${APP_HOST_NAME}/api/users/`)
        .then(response => response.json())
        .then(allUsers => {
-           const index = allUsers.findIndex(user => user.login == login);
+           const index = allUsers.findIndex(user => user.login === login);
 
            if (index === -1) {
                return dispatch({
@@ -36,24 +36,8 @@ export function addUser(login, password, icon) {
    const options = {
        method: 'POST',
        body: formData
-   }
+   };
 
    return dispatch => fetch(`${APP_HOST_NAME}/api/user/`, options)
-       .then(() => signInDispatch(dispatch, login, password));
-}
-
-export function modifyUser(login, password, icon) {
-   return dispatch => fetch(`${APP_HOST_NAME}/api/users/`,
-       {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify({
-                login: login,
-                password: password,
-                icon: icon
-            })
-        })
        .then(() => signInDispatch(dispatch, login, password));
 }

@@ -39,6 +39,11 @@ export function usersReducer(state = initialState, action) {
                  allUsers: []
              };
 
+        case actionTypes.SUBSCRIBE:
+        case actionTypes.UNSUBSCRIBE:
+            newUsers[state.index].subs = action.payload;
+            break;
+
         default:
             return state;
     }
