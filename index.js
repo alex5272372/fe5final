@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require('multer');
+const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./db');
 
@@ -14,6 +15,7 @@ app.use(function(req, res, next) {
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(bodyParser.json());
 
 // Put all API endpoints under '/api'
 app.get('/api/users', async function(req, res) {
@@ -44,7 +46,7 @@ app.post('/api/post', upload.single('photo'), async function(req, res) {
 });
 
 app.put('/api/user/:id', async function(req, res) {
-    await db.editUser(id, {
+    await db.editUser(req.params.id, {
         login: req.body.login,
         password: req.body.password,
         icon: req.body.icon,
@@ -53,13 +55,17 @@ app.put('/api/user/:id', async function(req, res) {
 });
 
 app.put('/api/post/:id', async function(req, res) {
-    await db.editPost(id, {
+    await db.editPost(req.params.id, {
         postDate: req.body.postDate,
         postUser: req.body.postUser,
         photo: req.body.photo,
         likes: req.body.likes,
         comments: req.body.comments
     });
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 const port = process.env.PORT || 5000;

@@ -11,17 +11,13 @@ export function usersReducer(state = initialState, action) {
     const newUsers = state.allUsers.map(value => ({...value, subs: value.subs.slice()}));
 
     switch (action.type) {
-        case actionTypes.GET_USERS:
-            /*return { // for users.test.js
-             ...initialState
-            };*/
-
-             return {
-                 index: action.payload.length - 1,
-                 postIndex: action.payload.length - 1,
-                 error: '',
-                 allUsers: action.payload
-             };
+        case actionTypes.ADD_USER:
+            return {
+                index: 0,
+                postIndex: 0,
+                error: 'INFO: Account created',
+                allUsers: []
+            };
 
         case actionTypes.SIGN_IN_USER:
              return {
