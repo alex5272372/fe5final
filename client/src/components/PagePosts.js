@@ -1,12 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {React, Fragment} from 'react';
+import {connect} from "react-redux";
+
+import {makeStyles} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
+import TextField from "@material-ui/core/TextField";
+
+import PostCard from './PostCard';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,38 +17,65 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
-export default function SimpleList() {
+function PagePosts(props) {
   const classes = useStyles();
+  const {
+    commentIndex,
+    comments,
+    photo,
+    onChangeCommentIndex,
+    onChangeComment,
+    onChangePhoto,
+    dispatch
+  } = props;
 
   return (
-    <div className={classes.root}>
-      <List component="nav" aria-label="main mailbox folders">
-        <ListItem button>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Inbox" />
+    <Fragment>
+      <List className={classes.root}>
+        <ListItem  alignItems="flex-start">
+          <PostCard
+            commentIndex={commentIndex}
+            comment={'comment'}
+            onChangeCommentIndex={onChangeCommentIndex}
+            onChangeComment={onChangeComment}
+          />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Drafts" />
+        <ListItem  alignItems="flex-start">
+          <PostCard
+              commentIndex={commentIndex}
+              comment={'comment'}
+              onChangeCommentIndex={onChangeCommentIndex}
+              onChangeComment={onChangeComment}
+          />
         </ListItem>
       </List>
-      <Divider />
-      <List component="nav" aria-label="secondary mailbox folders">
-        <ListItem button>
-          <ListItemText primary="Trash" />
-        </ListItem>
-        <ListItemLink href="#simple-list">
-          <ListItemText primary="Spam" />
-        </ListItemLink>
-      </List>
-    </div>
+
+      <TextField
+        type="file"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+        name="photo"
+        id="photo"
+        autoComplete="photo"
+        value={photo}
+        onChange={onChangePhoto}
+      />
+      <Button
+        type="button"
+        fullWidth
+        variant="contained"
+        color="primary"
+        className={classes.submit}
+      >
+        create post
+      </Button>
+    </Fragment>
   );
 }
+
+function mapStateToProps(store) {
+  return {}
+}
+
+export default connect(mapStateToProps)(PagePosts);

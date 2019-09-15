@@ -10,26 +10,46 @@ class PageContainer extends Component {
         super(props);
 
         this.state = {
-            comment: ''
+            commentIndex: -1,
+            comments: [],
+            photo: ''
         };
 
         this.onChangeComment = this.onChangeComment.bind(this);
     }
 
+    onChangeCommentIndex(event) {
+        this.setState({commentIndex: event.target.value});
+    }
+
     onChangeComment(event) {
-        this.setState({comment: event.target.value});
+        const newComments = this.state.comments.slice();
+        newComments[this.state.commentIndex] = event.target.value;
+        this.setState({comments: newComments});
+    }
+
+    onChangePhoto(event){
+        this.setState({photo: event.target.value});
     }
 
     render() {
-        const {comment} = this.state;
+        const {
+            commentIndex,
+            comments,
+            photo
+        } = this.state;
 
         if (this.props.isFetching) {
             return (
                 <Fragment>
                     <UserCard index={this.props.index} />
                     <Page
-                        comment={comment}
+                        commentIndex={commentIndex}
+                        comments={comments}
+                        photo={photo}
+                        onChangeCommentIndex={this.onChangeCommentIndex}
                         onChangeComment={this.onChangeComment}
+                        onChangePhoto={this.onChangePhoto}
                     />
                 </Fragment>
              )
