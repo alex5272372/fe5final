@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -16,10 +15,10 @@ import {newLike} from "../actions/pageActions";
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 345,
+    maxWidth: '100%',
   },
   media: {
-    height: 140,
+    height: 300,
   },
 });
 
@@ -34,50 +33,53 @@ function PostCard(props) {
   } = props;
 
   return (
-    <Card className={classes.card}>
-      <CardMedia
-        className={classes.media}
-        image={tileData[0].img}
-        title="Contemplative Reptile"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-          across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="comment"
-            label="Comment"
-            name="comment"
-            value={comment}
-            onChange={onChangeComment}
+      <Card className={classes.card}>
+        <CardMedia
+            className={classes.media}
+            image={tileData[0].img}
+            title="Contemplative Reptile"
         />
-        <Button
-            type="button"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={() => dispatch(newLike())}
-        >
-          Like
-        </Button>
-      </CardActions>
-    </Card>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            Lizard
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="comment"
+              label="Comment"
+              name="comment"
+              value={comment}
+              onChange={onChangeComment}
+          />
+          <Button
+              type="button"
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={() => dispatch(newLike())}
+          >
+            comment
+          </Button>
+          <Button
+              type="button"
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={() => dispatch(newLike())}
+          >
+            like
+          </Button>
+        </CardActions>
+      </Card>
   );
 }
 
 function mapStateToProps(store) {
-  return {}
+    return {}
 }
 
 export default connect(mapStateToProps)(PostCard);
