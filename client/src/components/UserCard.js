@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import {APP_HOST_NAME} from '../settings';
-import {pageTypes, modifyUser} from "../actions/pageActions";
+import {userTypes, modifyUser} from "../actions/userActions";
 
 const useStyles = makeStyles({
   media: {
@@ -39,12 +39,12 @@ function UserCard(props) {
           {allUsers[props.index].login}
         </Typography>
         {index !== props.index && !allUsers[index].subs.includes(allUsers[props.index]._id) &&
-          <Button size="small" color="primary" onClick={() => dispatch(modifyUser(allUsers[index], pageTypes.SUBSCRIBE, allUsers[props.index]._id))}>
+          <Button size="small" color="primary" onClick={() => dispatch(modifyUser(allUsers[index], userTypes.SUBSCRIBE, allUsers[props.index]._id))}>
             Subscribe
           </Button>
         }
         {index !== props.index && allUsers[index].subs.includes(allUsers[props.index]._id) &&
-          <Button size="small" color="primary" onClick={() => dispatch(modifyUser(allUsers[index], pageTypes.UNSUBSCRIBE, allUsers[props.index]._id))}>
+          <Button size="small" color="primary" onClick={() => dispatch(modifyUser(allUsers[index], userTypes.UNSUBSCRIBE, allUsers[props.index]._id))}>
             Unsubscribe
           </Button>
         }

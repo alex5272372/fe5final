@@ -1,36 +1,31 @@
 import {actionTypes} from '../actions';
 
-/*function createComment() {
-    return {
-        date: '',
-        user: '',
-        comment: ''
-    }
-}*/
-
-function createPost() {
-    return {
-        _id: '',
-        postDate: '',
-        postUser: '',
-        photo: '',
-        likes: 0,
-        comments: []
-    }
-}
-
 const initialState = {
     index: 0,
-    allPosts: [createPost()],
-    isFetching: false
+    allPosts: []
 };
 
-function postsReducer(state = initialState, action) {
-    const newPosts = state.allPosts.map(value => ({...value, comments: value.comments.slice()}));
+export default function postsReducer(state = initialState, action) {
+    const newPosts = state.allPosts.map(value => {
+        const newComments = value.comments.map(comment => ({...comment}));
+        return {
+            ...value,
+            likes: value.likes.slice(),
+            comments: newComments
+        }
+    });
 
     switch (action.type) {
+        case actionTypes.NEW_POST:
+            console.log('NEW_POST');
+            break;
+
+        case actionTypes.NEW_COMMENT:
+            console.log('NEW_COMMENT');
+            break;
+
         case actionTypes.NEW_LIKE:
-            newPosts[state.index].likes++;
+            console.log('NEW_LIKE');
             break;
 
         default:
@@ -38,10 +33,7 @@ function postsReducer(state = initialState, action) {
     }
 
     return {
-        index: newPosts.length - 1,
-        allPosts: newPosts,
-        isFetching: state.isFetching
+        index: state.index,
+        allPosts: newPosts
     };
 }
-
-export default postsReducer;

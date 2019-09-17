@@ -1,13 +1,13 @@
 import {actionTypes} from '../actions';
 
-export const initialState = {
+const initialState = {
     index: 0,
     postIndex: 0,
     error: '',
     allUsers: []
 };
 
-export function usersReducer(state = initialState, action) {
+export default function usersReducer(state = initialState, action) {
     const newUsers = state.allUsers.map(value => ({...value, subs: value.subs.slice()}));
 
     switch (action.type) {

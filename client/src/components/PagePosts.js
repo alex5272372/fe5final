@@ -9,6 +9,7 @@ import ListItem from '@material-ui/core/ListItem';
 import TextField from "@material-ui/core/TextField";
 
 import PostCard from './PostCard';
+import {newPost} from "../actions/pageActions";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -71,6 +72,7 @@ function PagePosts(props) {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
+                    onClick={() => dispatch(newPost())}
                 >
                     create post
                 </Button>

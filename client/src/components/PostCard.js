@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from "@material-ui/core/TextField";
 
 import tileData from '../tileData';
-import {newLike} from "../actions/pageActions";
+import {newComment,newLike} from "../actions/pageActions";
 
 const useStyles = makeStyles({
   card: {
@@ -60,7 +60,7 @@ function PostCard(props) {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={() => dispatch(newLike())}
+              onClick={() => dispatch(newComment())}
           >
             comment
           </Button>
