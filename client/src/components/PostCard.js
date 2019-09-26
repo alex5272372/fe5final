@@ -28,7 +28,9 @@ function PostCard(props) {
     const classes = useStyles();
     const {
         index,
+        commentIndex,
         comment,
+        changeCommentIndex,
         onChangeComment,
         allUsers,
         allPosts,
@@ -42,7 +44,7 @@ function PostCard(props) {
         <Card className={classes.card}>
             <UserCard
                 index={userIndex}
-                message={postDate.toString()}
+                message={postDate.toDateString()}
             />
             <CardMedia
                 className={classes.media}
@@ -64,16 +66,19 @@ function PostCard(props) {
                     name="comment"
                     value={comment}
                     onChange={onChangeComment}
+                    onFocus={() => changeCommentIndex(index)}
                 />
-                <Button
-                    type="button"
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                    onClick={() => dispatch(newComment())}
-                >
-                    comment
-                </Button>
+                {commentIndex === index &&
+                    <Button
+                        type="button"
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        onClick={() => dispatch(newComment())}
+                    >
+                        comment
+                    </Button>
+                }
                 <Button
                     type="button"
                     variant="contained"

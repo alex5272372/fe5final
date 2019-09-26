@@ -26,7 +26,7 @@ export default function Page(props) {
         commentIndex,
         comments,
         photo,
-        onChangeCommentIndex,
+        changeCommentIndex,
         onChangeComment,
         onChangePhoto
     } = props;
@@ -34,17 +34,17 @@ export default function Page(props) {
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
-            <Grid item xs={8} className={classes.posts}>
+            <Grid item xs={7} className={classes.posts}>
                 <PagePosts
                     commentIndex={commentIndex}
                     comments={comments}
                     photo={photo}
-                    onChangeCommentIndex={onChangeCommentIndex}
+                    changeCommentIndex={changeCommentIndex}
                     onChangeComment={onChangeComment}
                     onChangePhoto={onChangePhoto}
                 />
             </Grid>
-            <Grid item xs={4} className={classes.users}>
+            <Grid item xs={5} className={classes.users}>
                 <PageUsers />
             </Grid>
         </Grid>

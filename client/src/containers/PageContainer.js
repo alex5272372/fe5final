@@ -15,13 +15,13 @@ class PageContainer extends Component {
             photo: ''
         };
 
-        this.onChangeCommentIndex = this.onChangeCommentIndex.bind(this);
+        this.changeCommentIndex = this.changeCommentIndex.bind(this);
         this.onChangeComment = this.onChangeComment.bind(this);
         this.onChangePhoto = this.onChangePhoto.bind(this);
     }
 
-    onChangeCommentIndex(event) {
-        this.setState({commentIndex: event.target.value});
+    changeCommentIndex(index) {
+        this.setState({commentIndex: index});
     }
 
     onChangeComment(event) {
@@ -49,7 +49,7 @@ class PageContainer extends Component {
                         commentIndex={commentIndex}
                         comments={comments}
                         photo={photo}
-                        onChangeCommentIndex={this.onChangeCommentIndex}
+                        changeCommentIndex={this.changeCommentIndex}
                         onChangeComment={this.onChangeComment}
                         onChangePhoto={this.onChangePhoto}
                     />

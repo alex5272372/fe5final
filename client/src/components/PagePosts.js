@@ -29,7 +29,7 @@ function PagePosts(props) {
         commentIndex,
         comments,
         photo,
-        onChangeCommentIndex,
+        changeCommentIndex,
         onChangeComment,
         onChangePhoto,
         user,
@@ -37,11 +37,13 @@ function PagePosts(props) {
         dispatch
     } = props;
 
-    const items = allPosts.map((val, i) =>
+    const items = allPosts.sort((a, b) => b.postDate - a.postDate).map((val, i) =>
         <ListItem  alignItems="flex-start" key={val._id}>
             <PostCard
                 index={i}
+                commentIndex={commentIndex}
                 comment={comments[i]}
+                changeCommentIndex={changeCommentIndex}
                 onChangeComment={onChangeComment}
             />
         </ListItem>
