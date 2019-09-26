@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     divider: {
         height: 10,
     },
-    newPost: {
+    form: {
         display: 'flex',
     },
 }));
@@ -32,31 +32,28 @@ function PagePosts(props) {
         onChangeCommentIndex,
         onChangeComment,
         onChangePhoto,
+        user,
+        allPosts,
         dispatch
     } = props;
+
+    const items = allPosts.map((val, i) =>
+        <ListItem  alignItems="flex-start" key={val._id}>
+            <PostCard
+                index={i}
+                comment={comments[i]}
+                onChangeComment={onChangeComment}
+            />
+        </ListItem>
+    );
 
     return (
         <Fragment>
             <List className={classes.root}>
-                <ListItem  alignItems="flex-start">
-                    <PostCard
-                        commentIndex={commentIndex}
-                        comment={'comment'}
-                        onChangeCommentIndex={onChangeCommentIndex}
-                        onChangeComment={onChangeComment}
-                    />
-                </ListItem>
-                <ListItem  alignItems="flex-start">
-                    <PostCard
-                        commentIndex={commentIndex}
-                        comment={'comment'}
-                        onChangeCommentIndex={onChangeCommentIndex}
-                        onChangeComment={onChangeComment}
-                    />
-                </ListItem>
+                {items}
             </List>
             <Divider component="div" className={classes.divider}/>
-            <div className={classes.newPost}>
+            <form className={classes.form} noValidate>
                 <TextField
                     type="file"
                     variant="outlined"
@@ -72,17 +69,20 @@ function PagePosts(props) {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
-                    onClick={() => dispatch(newPost())}
+                    onClick={() => dispatch(newPost(user._id))}
                 >
                     create post
                 </Button>
-            </div>
+            </form>
         </Fragment>
     );
 }
 
 function mapStateToProps(store) {
-  return {}
+    return {
+        user: store.users.allUsers[store.users.index],
+        allPosts: store.posts.allPosts
+    }
 }
 
 export default connect(mapStateToProps)(PagePosts);

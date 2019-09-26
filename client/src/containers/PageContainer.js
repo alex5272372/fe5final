@@ -15,7 +15,9 @@ class PageContainer extends Component {
             photo: ''
         };
 
+        this.onChangeCommentIndex = this.onChangeCommentIndex.bind(this);
         this.onChangeComment = this.onChangeComment.bind(this);
+        this.onChangePhoto = this.onChangePhoto.bind(this);
     }
 
     onChangeCommentIndex(event) {

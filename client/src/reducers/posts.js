@@ -2,6 +2,7 @@ import {actionTypes} from '../actions';
 
 const initialState = {
     index: 0,
+    message: '',
     allPosts: []
 };
 
@@ -16,9 +17,19 @@ export default function postsReducer(state = initialState, action) {
     });
 
     switch (action.type) {
+        case actionTypes.SIGN_IN_USER:
+            return {
+                index: 0,
+                message: '',
+                allPosts: action.payload.allPosts
+            };
+
         case actionTypes.NEW_POST:
-            console.log('NEW_POST');
-            break;
+            return {
+                index: 0,
+                message: '',
+                allPosts: action.payload
+            };
 
         case actionTypes.NEW_COMMENT:
             console.log('NEW_COMMENT');
@@ -31,9 +42,10 @@ export default function postsReducer(state = initialState, action) {
         default:
             return state;
     }
-
+    
     return {
         index: state.index,
+        message: state.message,
         allPosts: newPosts
     };
 }

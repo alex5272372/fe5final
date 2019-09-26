@@ -61,9 +61,9 @@ function SignIn(props) {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                {props.error &&
+                {props.message &&
                     <Typography component="h1" variant="h5" color="error">
-                        {props.error}
+                        {props.message}
                     </Typography>
                 }
                 <form className={classes.form} noValidate>
@@ -132,7 +132,7 @@ function SignIn(props) {
 
 function mapStateToProps(store) {
     return {
-        error: store.users.error
+        message: store.users.message
     }
 }
 

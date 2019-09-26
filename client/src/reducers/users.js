@@ -3,7 +3,7 @@ import {actionTypes} from '../actions';
 const initialState = {
     index: 0,
     postIndex: 0,
-    error: '',
+    message: '',
     allUsers: []
 };
 
@@ -15,15 +15,15 @@ export default function usersReducer(state = initialState, action) {
             return {
                 index: 0,
                 postIndex: 0,
-                error: 'INFO: Account created',
+                message: 'INFO: Account created',
                 allUsers: []
             };
 
         case actionTypes.SIGN_IN_USER:
              return {
                  index: action.payload.index,
-                 postIndex: action.payload.index,
-                 error: '',
+                 postIndex: 0,
+                 message: '',
                  allUsers: action.payload.allUsers
              };
 
@@ -31,7 +31,7 @@ export default function usersReducer(state = initialState, action) {
              return {
                  index: 0,
                  postIndex: 0,
-                 error: action.payload.error,
+                 message: action.payload.message,
                  allUsers: []
              };
 
@@ -47,7 +47,7 @@ export default function usersReducer(state = initialState, action) {
     return {
         index: state.index,
         postIndex: state.postIndex,
-        error: state.error,
+        message: state.message,
         allUsers: newUsers
     };
 }

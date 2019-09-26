@@ -8,9 +8,9 @@ const app = express();
 const upload = multer({dest: 'client/build/uploads'});
 
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
 });
 
 // Serve static files from the React app
@@ -37,12 +37,13 @@ app.post('/api/user', upload.single('icon'), async function(req, res) {
 
 app.post('/api/post', upload.single('photo'), async function(req, res) {
     await db.addPost({
-        postDate: Date.Now(),
+        postDate: Date.now(),
         postUser: req.body.postUser,
         photo: req.file.filename,
         likes: [],
         comments: []
     });
+    res.json(await db.getPosts());
 });
 
 app.put('/api/user/:id', async function(req, res) {
