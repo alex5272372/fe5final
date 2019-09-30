@@ -26,14 +26,65 @@ export function newPost(postUser) {
         })
 }
 
-export function newComment() {
-    return {
-        type: pageTypes.NEW_COMMENT
-    }
+export function newComment(post, user, comment, index) {
+    let comments = post.comments.map(comment => ({...comment}));
+    comments.unshift({
+        date: Date.now(),
+        user: user,
+        comment: comment
+    });
+
+    const data = {
+        postDate: post.postDate,
+        postUser: post.postUser,
+        photo: post.photo,
+        likes: post.likes,
+        comments: comments
+    };
+
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+
+    return dispatch => fetch(`${APP_HOST_NAME}/api/post/${post._id}`, options)
+        .then(dispatch({
+            type: pageTypes.NEW_COMMENT,
+            payload: {index, comments}
+        }));
 }
 
-export function newLike() {
-    return {
-        type: pageTypes.NEW_LIKE
+export function newLike(post, user, index) {
+    let likes;
+    if(post.likes.indexOf(user) === -1) {
+        likes = post.likes.slice();
+        likes.push(user);
+    } else {
+        likes = post.likes.filter(val => val !== user);
     }
+
+    const data = {
+        postDate: post.postDate,
+        postUser: post.postUser,
+        photo: post.photo,
+        likes: likes,
+        comments: post.comments
+    };
+
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+
+    return dispatch => fetch(`${APP_HOST_NAME}/api/post/${post._id}`, options)
+        .then(dispatch({
+            type: pageTypes.NEW_LIKE,
+            payload: {index, likes}
+        }));
 }

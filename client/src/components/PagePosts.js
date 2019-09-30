@@ -13,7 +13,7 @@ import {newPost} from "../actions/pageActions";
 
 const useStyles = makeStyles(theme => ({
     root: {
-    width: '100%',
+        width: '100%',
     },
     divider: {
         height: 10,

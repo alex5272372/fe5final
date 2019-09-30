@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {connect} from "react-redux";
 
 import {makeStyles} from '@material-ui/core/styles';
@@ -8,12 +8,13 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import TextField from "@material-ui/core/TextField";
 
 import {APP_HOST_NAME} from '../settings';
 import {newComment,newLike} from "../actions/pageActions";
 import UserCard from "./UserCard";
-import { element } from 'prop-types';
 
 const useStyles = makeStyles({
     card: {
@@ -21,6 +22,9 @@ const useStyles = makeStyles({
     },
     media: {
         height: 300,
+    },
+    list: {
+        width: '100%',
     },
 });
 
@@ -32,19 +36,37 @@ function PostCard(props) {
         comment,
         changeCommentIndex,
         onChangeComment,
+        userIndex,
         allUsers,
         allPosts,
         dispatch
     } = props;
     
     const postDate = new Date(allPosts[index].postDate);
-    const userIndex = allUsers.findIndex(element => element._id === allPosts[index].postUser);
+    const dateFormat = new Intl.DateTimeFormat(undefined, {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+    });
+    const postUserIndex = allUsers.findIndex(element => element._id === allPosts[index].postUser);
+
+    const items = allPosts[index].comments.map((val, i) =>
+        <ListItem  alignItems="flex-start" key={i}>
+            <UserCard
+                index={allUsers.findIndex(element => element._id === val.user)}
+                message={'(' + dateFormat.format(val.date) + ') ' + val.comment}
+            />
+        </ListItem>
+    );
 
     return (
         <Card className={classes.card}>
             <UserCard
-                index={userIndex}
-                message={postDate.toDateString()}
+                index={postUserIndex}
+                message={dateFormat.format(postDate)}
             />
             <CardMedia
                 className={classes.media}
@@ -52,9 +74,9 @@ function PostCard(props) {
                 title="Post photo"
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                    Lizard
-                </Typography>
+                <List className={classes.list}>
+                    {items}
+                </List>
             </CardContent>
             <CardActions>
                 <TextField
@@ -74,7 +96,7 @@ function PostCard(props) {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => dispatch(newComment())}
+                        onClick={() => dispatch(newComment(allPosts[index], allUsers[userIndex]._id, comment, index))}
                     >
                         comment
                     </Button>
@@ -84,9 +106,10 @@ function PostCard(props) {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
-                    onClick={() => dispatch(newLike())}
+                    onClick={() => dispatch(newLike(allPosts[index], allUsers[userIndex]._id, index))}
                 >
-                    like
+                    {allPosts[index].likes.indexOf(allUsers[userIndex]._id) === -1 ? 'like' : 'unlike'}
+                    {'\n' + allPosts[index].likes.length}
                 </Button>
             </CardActions>
         </Card>
@@ -95,6 +118,7 @@ function PostCard(props) {
 
 function mapStateToProps(store) {
     return {
+        userIndex: store.users.index,
         allUsers: store.users.allUsers,
         allPosts: store.posts.allPosts
     }

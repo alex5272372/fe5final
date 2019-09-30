@@ -6,11 +6,12 @@ export const userTypes = {
 };
 
 export function modifyUser(user, type, id) {
-    let subs = user.subs;
+    let subs;
     if (type === userTypes.SUBSCRIBE) {
+        subs = user.subs.slice();
         subs.push(id);
     } else if (type === userTypes.UNSUBSCRIBE) {
-        subs = subs.filter(val => val !== id);
+        subs = user.subs.filter(val => val !== id);
     }
 
     const data = {
