@@ -1,0 +1,38 @@
+1. Install Ubuntu 18.04 LTS.
+2. Update Packages:
+    $ sudo apt update
+    $ sudo apt upgrade
+3. Install Lubuntu Desktop:
+    $ sudo apt-get install lubuntu-desktop
+4. Enable SSH:
+    $ sudo apt install openssh-server
+    $ sudo systemctl status ssh
+5. Setting Up a Basic Firewall
+    $ sudo ufw app list
+    $ sudo ufw status
+    $ sudo ufw enable
+    $ sudo ufw disable
+    $ sudo ufw allow ssh
+        or $ sudo ufw allow 22
+    $ sudo ufw allow http
+        or $ sudo ufw allow 80
+    $ sudo ufw allow https
+        or $ sudo ufw allow 443
+    $ sudo ufw allow 5900
+6. Configure x11vnc:
+    $ sudo apt-get install x11vnc
+    $ sudo x11vnc -storepasswd
+    $ sudo nano /lib/systemd/system/x11vnc.service
+
+[Unit]
+Description=Start x11vnc at startup.
+After=multi-user.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /home/alexey/.vnc/passwd -rfbport 5900 -shared -bg -o /var/log/x11vnc.log
+[Install]
+WantedBy=multi-user.target
+
+    $ user@localhost:~$ sudo systemctl daemon-reload
+    $ user@localhost:~$ sudo systemctl enable x11vnc.service
+    $ user@localhost:~$ sudo systemctl start x11vnc.service
