@@ -45,9 +45,4 @@ export default function postsReducer(state = initialState, action) {
         default:
             return state;
     }
-    
-    return {
-        index: state.index,
-        allPosts: newPosts
-    };
 }
