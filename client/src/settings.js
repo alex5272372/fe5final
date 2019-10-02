@@ -1,1 +1,1 @@
-export const APP_HOST_NAME = 'https://fe5final.herokuapp.com';
+export const APP_HOST_NAME = 'http://procmain.eu:5000';
