@@ -36,3 +36,14 @@ WantedBy=multi-user.target
     $ user@localhost:~$ sudo systemctl daemon-reload
     $ user@localhost:~$ sudo systemctl enable x11vnc.service
     $ user@localhost:~$ sudo systemctl start x11vnc.service
+7. Install WebStorm:
+    $ sudo apt install snapd snapd-xdg-open
+    $ sudo snap install webstorm --classic
+8. Install Git:
+    $ sudo apt install git
+    $ git --version
+9. Install NodeJS:
+    $ sudo apt install curl
+    $ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+    $ sudo apt-get install -y nodejs
+    
