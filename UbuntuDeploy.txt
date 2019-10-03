@@ -46,4 +46,5 @@ WantedBy=multi-user.target
     $ sudo apt install curl
     $ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
     $ sudo apt-get install -y nodejs
-    
+10. Forward port 80/443 to internal server:
+    $
