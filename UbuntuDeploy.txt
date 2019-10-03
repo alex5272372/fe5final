@@ -1,15 +1,19 @@
-1. Install Ubuntu 18.04 LTS.
+1. Install Ubuntu 18.04 LTS
+
 2. Update Packages:
     $ sudo apt update
     $ sudo apt upgrade
+
 3. Install Lubuntu Desktop:
     $ sudo apt-get install lubuntu-desktop
+
 4. Enable SSH:
     $ sudo apt install openssh-server
     $ sudo systemctl status ssh
+
 5. Setting Up a Basic Firewall
     $ sudo ufw app list
-    $ sudo ufw status
+    $ sudo ufw status numbered
     $ sudo ufw enable
     $ sudo ufw disable
     $ sudo ufw allow ssh
@@ -19,6 +23,7 @@
     $ sudo ufw allow https
         or $ sudo ufw allow 443
     $ sudo ufw allow 5900
+
 6. Configure x11vnc:
     $ sudo apt-get install x11vnc
     $ sudo x11vnc -storepasswd
@@ -36,15 +41,28 @@ WantedBy=multi-user.target
     $ user@localhost:~$ sudo systemctl daemon-reload
     $ user@localhost:~$ sudo systemctl enable x11vnc.service
     $ user@localhost:~$ sudo systemctl start x11vnc.service
+
 7. Install WebStorm:
     $ sudo apt install snapd snapd-xdg-open
     $ sudo snap install webstorm --classic
+
 8. Install Git:
     $ sudo apt install git
     $ git --version
+
 9. Install NodeJS:
     $ sudo apt install curl
     $ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
     $ sudo apt-get install -y nodejs
+
 10. Forward port 80/443 to internal server:
-    $
+    $ sudo iptables -t nat -A PREROUTING -i ens3 -p tcp --dport 80 -j REDIRECT --to-port 5000
+    $ sudo iptables -t nat -A PREROUTING -i ens3 -p tcp --dport 443 -j REDIRECT --to-port 5000
+    $ sudo iptables -t nat -L -n -v --line-numbers
+    $ sudo iptables-save
+    $ sudo nano /etc/sysctl.conf
+
+net.ipv4.ip_forward=1
+
+    $ sudo sysctl -p
+    $ sudo systemctl restart ufw
