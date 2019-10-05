@@ -1,30 +1,18 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {connect} from "react-redux";
 
-import {makeStyles} from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Divider from "@material-ui/core/Divider";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import TextField from "@material-ui/core/TextField";
+import {
+    Button,
+    List,
+    ListItem,
+    TextField,
+    Box
+} from '@material-ui/core';
 
 import PostCard from './PostCard';
 import {newPost} from "../actions/pageActions";
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-    },
-    divider: {
-        height: 10,
-    },
-    form: {
-        display: 'flex',
-    },
-}));
-
 function PagePosts(props) {
-    const classes = useStyles();
     const {
         commentIndex,
         comments,
@@ -50,33 +38,37 @@ function PagePosts(props) {
     );
 
     return (
-        <Fragment>
-            <form className={classes.form} noValidate>
-                <TextField
-                    type="file"
-                    variant="outlined"
-                    margin="normal"
-                    name="photo"
-                    id="photo"
-                    autoComplete="photo"
-                    value={photo}
-                    onChange={onChangePhoto}
-                />
-                <Button
-                    type="button"
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                    onClick={() => dispatch(newPost(user._id))}
-                >
-                    create post
-                </Button>
-            </form>
-            <Divider component="div" className={classes.divider}/>
-            <List className={classes.root}>
-                {items}
-            </List>
-        </Fragment>
+        <List>
+            <Box
+                border={4}
+                borderColor="primary.main"
+                borderRadius={8}
+            >
+                <ListItem  alignItems="flex-start" key={-1}>
+                    <form noValidate>
+                        <TextField
+                            type="file"
+                            variant="outlined"
+                            margin="normal"
+                            name="photo"
+                            id="photo"
+                            autoComplete="photo"
+                            value={photo}
+                            onChange={onChangePhoto}
+                        />
+                        <Button
+                            type="button"
+                            variant="contained"
+                            color="primary"
+                            onClick={() => dispatch(newPost(user._id))}
+                        >
+                            create post
+                        </Button>
+                    </form>
+                </ListItem>
+            </Box>
+             {items}
+        </List>
     );
 }
 

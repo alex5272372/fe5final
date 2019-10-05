@@ -1,27 +1,9 @@
 import React from 'react';
-
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import {makeStyles} from '@material-ui/core/styles';
-import {green, lightBlue, yellow} from "@material-ui/core/colors";
-
 import PagePosts from './PagePosts';
 import PageUsers from './PageUsers';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        backgroundColor: lightBlue,
-    },
-    posts: {
-        backgroundColor: green,
-    },
-    users: {
-        backgroundColor: yellow,
-    }
-}));
-
 export default function Page(props) {
-    const classes = useStyles();
     const {
         commentIndex,
         comments,
@@ -32,9 +14,8 @@ export default function Page(props) {
     } = props;
 
     return (
-        <Grid container component="main" className={classes.root}>
-            <CssBaseline />
-            <Grid item xs={7} className={classes.posts}>
+        <Grid container component="main">
+            <Grid item xs={7}>
                 <PagePosts
                     commentIndex={commentIndex}
                     comments={comments}
@@ -44,7 +25,7 @@ export default function Page(props) {
                     onChangePhoto={onChangePhoto}
                 />
             </Grid>
-            <Grid item xs={5} className={classes.users}>
+            <Grid item xs={5}>
                 <PageUsers />
             </Grid>
         </Grid>

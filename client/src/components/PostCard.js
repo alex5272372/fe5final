@@ -2,14 +2,16 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import {makeStyles} from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import TextField from "@material-ui/core/TextField";
+import {
+    Card,
+    CardMedia,
+    CardContent,
+    CardActions,
+    List,
+    ListItem,
+    TextField,
+    Button
+} from '@material-ui/core';
 
 import {APP_HOST_NAME} from '../settings';
 import {newComment,newLike} from "../actions/pageActions";
@@ -17,14 +19,11 @@ import UserCard from "./UserCard";
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: '100%',
+        width: '100%'
     },
     media: {
-        height: 300,
-    },
-    list: {
-        width: '100%',
-    },
+        height: 400,
+    }
 });
 
 function PostCard(props) {
@@ -63,7 +62,10 @@ function PostCard(props) {
     );
 
     return (
-        <Card className={classes.card}>
+        <Card
+            raised={true}
+            className={classes.card}
+        >
             <UserCard
                 index={postUserIndex}
                 date={dateFormat.format(postDate)}
@@ -75,7 +77,7 @@ function PostCard(props) {
                 onDoubleClick={() => dispatch(newLike(allPosts[index], allUsers[userIndex]._id, index))}
             />
             <CardContent>
-                <List className={classes.list}>
+                <List>
                     {items}
                 </List>
             </CardContent>

@@ -6,6 +6,8 @@
 [README.md для Create React App](client/README.md)
 
 ## Инструкция по запуску проекта
+[Разворачивание сервера Ubuntu](UbuntuDeploy.txt)
+
 ### Последовательность действий
 1. Установить [Node.js](https://nodejs.org/en/download/)
 2. Склонировать проект с репозитория https://github.com/alex5272372/fe5final.git
@@ -55,11 +57,6 @@ export const APP_HOST_NAME = 'https://fe5final.herokuapp.com';
 
 ### Веб-сервер: Express
 [Документация](https://expressjs.com/ru/)
-
-### Сервис публикации приложений: Heroku
-[Приложение](https://fe5final.herokuapp.com/)
-
-[Администрирование](https://dashboard.heroku.com/apps/fe5final)
 
 [Deploy React and Express to Heroku](https://daveceddia.com/deploy-react-express-app-heroku/)
 
