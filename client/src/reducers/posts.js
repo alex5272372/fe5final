@@ -31,14 +31,14 @@ export default function postsReducer(state = initialState, action) {
         case actionTypes.NEW_COMMENT:
             newPosts[action.payload.index].comments = action.payload.comments;
             return {
-                index: action.payload.index,
+                index: 0,
                 allPosts: newPosts
             };
         
         case actionTypes.NEW_LIKE:
             newPosts[action.payload.index].likes = action.payload.likes;
             return {
-                index: action.payload.index,
+                index: 0,
                 allPosts: newPosts
             };
 

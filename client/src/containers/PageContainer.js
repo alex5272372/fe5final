@@ -41,7 +41,11 @@ class PageContainer extends Component {
             photo
         } = this.state;
 
-        if (this.props.isFetching) {
+        if (this.props.targetIndex !== -1) {
+            return (
+                <Redirect to="/user" />
+            )
+        } else if (this.props.isFetching) {
             return (
                 <Fragment>
                     <UserCard index={this.props.index} />
@@ -66,6 +70,7 @@ class PageContainer extends Component {
 function mapStateToProps(store) {
     return {
         index: store.users.index,
+        targetIndex: store.users.targetIndex,
         isFetching: store.users.allUsers.length !== 0
     }
 }

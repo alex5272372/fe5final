@@ -56,7 +56,8 @@ function PostCard(props) {
         <ListItem  alignItems="flex-start" key={i}>
             <UserCard
                 index={allUsers.findIndex(element => element._id === val.user)}
-                message={'(' + dateFormat.format(val.date) + ') ' + val.comment}
+                date={dateFormat.format(val.date)}
+                message={val.comment}
             />
         </ListItem>
     );
@@ -65,12 +66,13 @@ function PostCard(props) {
         <Card className={classes.card}>
             <UserCard
                 index={postUserIndex}
-                message={dateFormat.format(postDate)}
+                date={dateFormat.format(postDate)}
             />
             <CardMedia
                 className={classes.media}
                 image={`${APP_HOST_NAME}/uploads/${allPosts[index].photo}`}
                 title="Post photo"
+                onDoubleClick={() => dispatch(newLike(allPosts[index], allUsers[userIndex]._id, index))}
             />
             <CardContent>
                 <List className={classes.list}>

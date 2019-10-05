@@ -1,8 +1,8 @@
 import {actionTypes} from '../actions';
 
 const initialState = {
-    index: 0,
-    postIndex: 0,
+    index: -1,
+    targetIndex: -1,
     message: '',
     allUsers: []
 };
@@ -13,8 +13,8 @@ export default function usersReducer(state = initialState, action) {
     switch (action.type) {
         case actionTypes.ADD_USER:
             return {
-                index: 0,
-                postIndex: 0,
+                index: -1,
+                targetIndex: -1,
                 message: 'INFO: Account created',
                 allUsers: []
             };
@@ -22,18 +22,27 @@ export default function usersReducer(state = initialState, action) {
         case actionTypes.SIGN_IN_USER:
              return {
                  index: action.payload.index,
-                 postIndex: 0,
+                 targetIndex: -1,
                  message: '',
                  allUsers: action.payload.allUsers
              };
 
         case actionTypes.SIGN_IN_ERROR:
              return {
-                 index: 0,
-                 postIndex: 0,
+                 index: -1,
+                 targetIndex: -1,
                  message: action.payload.message,
                  allUsers: []
              };
+
+        case actionTypes.USER_POSTS:
+        case actionTypes.ALL_POSTS:
+            return {
+                index: state.index,
+                targetIndex: action.payload,
+                message: state.message,
+                allUsers: newUsers
+            };
 
         case actionTypes.SUBSCRIBE:
         case actionTypes.UNSUBSCRIBE:
@@ -46,7 +55,7 @@ export default function usersReducer(state = initialState, action) {
 
     return {
         index: state.index,
-        postIndex: state.postIndex,
+        targetIndex: state.targetIndex,
         message: state.message,
         allUsers: newUsers
     };

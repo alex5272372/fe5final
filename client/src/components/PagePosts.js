@@ -51,10 +51,6 @@ function PagePosts(props) {
 
     return (
         <Fragment>
-            <List className={classes.root}>
-                {items}
-            </List>
-            <Divider component="div" className={classes.divider}/>
             <form className={classes.form} noValidate>
                 <TextField
                     type="file"
@@ -76,6 +72,10 @@ function PagePosts(props) {
                     create post
                 </Button>
             </form>
+            <Divider component="div" className={classes.divider}/>
+            <List className={classes.root}>
+                {items}
+            </List>
         </Fragment>
     );
 }

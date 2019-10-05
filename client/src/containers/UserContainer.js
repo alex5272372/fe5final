@@ -24,12 +24,17 @@ class UserContainer extends Component {
     render() {
         const {comment} = this.state;
 
-        if(this.props.isFetching) {
+        if (this.props.targetIndex === -1) {
+            return (
+                <Redirect to="/page"/>
+            )
+        } else if(this.props.isFetching) {
             return (
                 <Fragment>
                     <UserCard index={this.props.index} />
-                    <UserPosts index={this.props.index} />
-                    <UserPost postIndex={this.props.postIndex}/>
+                    <UserCard index={this.props.targetIndex} />
+                    <UserPosts index={this.props.targetIndex} />
+                    <UserPost postIndex={0}/>
                 </Fragment>
             )
         } else {
@@ -43,7 +48,7 @@ class UserContainer extends Component {
 function mapStateToProps(store) {
     return {
         index: store.users.index,
-        postIndex: store.users.postIndex,
+        targetIndex: store.users.targetIndex,
         isFetching: store.users.allUsers.length !== 0
     }
 }

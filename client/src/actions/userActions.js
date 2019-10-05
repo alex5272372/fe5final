@@ -2,7 +2,9 @@ import {APP_HOST_NAME} from '../settings';
 
 export const userTypes = {
     SUBSCRIBE: 'SUBSCRIBE',
-    UNSUBSCRIBE: 'UNSUBSCRIBE'
+    UNSUBSCRIBE: 'UNSUBSCRIBE',
+    USER_POSTS: 'USER_POSTS',
+    ALL_POSTS: 'ALL_POSTS'
 };
 
 export function modifyUser(user, type, id) {
