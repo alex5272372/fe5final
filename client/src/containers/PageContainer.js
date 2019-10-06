@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 
@@ -47,17 +47,14 @@ class PageContainer extends Component {
             )
         } else if (this.props.isFetching) {
             return (
-                <Fragment>
-                    <UserCard index={this.props.index} />
-                    <Page
-                        commentIndex={commentIndex}
-                        comments={comments}
-                        photo={photo}
-                        changeCommentIndex={this.changeCommentIndex}
-                        onChangeComment={this.onChangeComment}
-                        onChangePhoto={this.onChangePhoto}
-                    />
-                </Fragment>
+                <Page
+                    commentIndex={commentIndex}
+                    comments={comments}
+                    photo={photo}
+                    changeCommentIndex={this.changeCommentIndex}
+                    onChangeComment={this.onChangeComment}
+                    onChangePhoto={this.onChangePhoto}
+                />
              )
         } else {
             return (
@@ -69,7 +66,6 @@ class PageContainer extends Component {
 
 function mapStateToProps(store) {
     return {
-        index: store.users.index,
         targetIndex: store.users.targetIndex,
         isFetching: store.users.allUsers.length !== 0
     }

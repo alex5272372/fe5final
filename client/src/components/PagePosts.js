@@ -44,7 +44,7 @@ function PagePosts(props) {
                 borderColor="primary.main"
                 borderRadius={8}
             >
-                <ListItem  alignItems="flex-start" key={-1}>
+                <ListItem alignItems="center" key={-1}>
                     <form noValidate>
                         <TextField
                             type="file"
@@ -56,18 +56,18 @@ function PagePosts(props) {
                             value={photo}
                             onChange={onChangePhoto}
                         />
-                        <Button
-                            type="button"
-                            variant="contained"
-                            color="primary"
-                            onClick={() => dispatch(newPost(user._id))}
-                        >
-                            create post
-                        </Button>
                     </form>
+                    <Button
+                        type="button"
+                        variant="contained"
+                        color="primary"
+                        onClick={() => dispatch(newPost(user._id, photo))}
+                    >
+                        create post
+                    </Button>
                 </ListItem>
             </Box>
-             {items}
+            {items}
         </List>
     );
 }

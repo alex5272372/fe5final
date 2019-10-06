@@ -31,7 +31,6 @@ class UserContainer extends Component {
         } else if(this.props.isFetching) {
             return (
                 <Fragment>
-                    <UserCard index={this.props.index} />
                     <UserCard index={this.props.targetIndex} />
                     <UserPosts index={this.props.targetIndex} />
                     <UserPost postIndex={0}/>
@@ -47,7 +46,6 @@ class UserContainer extends Component {
 
 function mapStateToProps(store) {
     return {
-        index: store.users.index,
         targetIndex: store.users.targetIndex,
         isFetching: store.users.allUsers.length !== 0
     }

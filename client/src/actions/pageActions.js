@@ -6,7 +6,7 @@ export const pageTypes = {
     NEW_LIKE: 'NEW_LIKE'
 };
 
-export function newPost(postUser) {
+export function newPost(postUser, photo) {
     const formElement = document.querySelector('form');
     const formData = new FormData(formElement);
     formData.append('postUser', postUser);

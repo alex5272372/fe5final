@@ -13,13 +13,13 @@ function PageUsers(props) {
     const {index, allUsers} = props.users;
 
     const subItems = allUsers.map((val, i) =>
-        <ListItem alignItems="flex-start" key={val._id}>
+        <ListItem key={val._id}>
             <UserCard index={i} />
         </ListItem>
     ).filter((val, i) => i !== index && allUsers[index].subs.includes(allUsers[i]._id));
 
     const unsubItems = allUsers.map((val, i) =>
-        <ListItem alignItems="flex-start" key={val._id}>
+        <ListItem key={val._id}>
             <UserCard index={i} />
         </ListItem>
     ).filter((val, i) => i !== index && !allUsers[index].subs.includes(allUsers[i]._id));
@@ -31,6 +31,15 @@ function PageUsers(props) {
             borderColor="primary.main"
             borderRadius={8}
         >
+            <ListItem key={-1}>
+                <UserCard index={index} />
+            </ListItem>
+        </Box>
+        <Box
+            border={4}
+            borderColor="secondary.main"
+            borderRadius={8}
+        >
             {subItems}
         </Box>
         {unsubItems}
@@ -40,6 +49,7 @@ function PageUsers(props) {
 
 function mapStateToProps(store) {
     return {
+        index: store.users.index,
         users: store.users
     }
 }
