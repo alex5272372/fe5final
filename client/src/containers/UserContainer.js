@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react'
 import {Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 
-import UserCard from '../components/UserCard';
 import UserPosts from '../components/UserPosts';
 import UserPost from '../components/UserPost';
 
@@ -22,8 +21,6 @@ class UserContainer extends Component {
     }
 
     render() {
-        const {comment} = this.state;
-
         if (this.props.targetIndex === -1) {
             return (
                 <Redirect to="/page"/>
@@ -31,7 +28,6 @@ class UserContainer extends Component {
         } else if(this.props.isFetching) {
             return (
                 <Fragment>
-                    <UserCard index={this.props.targetIndex} />
                     <UserPosts index={this.props.targetIndex} />
                     <UserPost postIndex={0}/>
                 </Fragment>

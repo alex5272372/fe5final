@@ -27,7 +27,11 @@ const useStyles = makeStyles({
         borderRadius: '50%'
     },
     login: {
-        display: 'flex'
+        display: 'flex',
+        alignItems: 'baseline'
+    },
+    date: {
+        marginLeft: 12
     }
 });
 
@@ -55,7 +59,7 @@ function UserCard(props) {
                     >
                         {allUsers[props.index].login}
                     </Typography>
-                    <Typography variant="caption">{date}</Typography>
+                    <Typography variant="caption" className={classes.date}>{date}</Typography>
                 </Box>
                 <Typography variant="body1">{message}</Typography>
             </CardContent>

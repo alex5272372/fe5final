@@ -5,85 +5,70 @@ import {makeStyles} from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
-import tileData from '../tileData';
 import Button from "@material-ui/core/Button";
+import {Box} from "@material-ui/core";
+
 import {userTypes} from "../actions/userActions";
+import UserCard from "./UserCard";
+import {APP_HOST_NAME} from "../settings";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
-  gridList: {
-    width: 500,
-    height: 450,
-  },
-  icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
-  },
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+    }
 }));
 
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
 function UserPosts(props) {
     const classes = useStyles();
-    const {dispatch} = props;
+    const {
+        targetIndex,
+        allPosts,
+        dispatch
+    } = props;
 
     return (
         <Fragment>
+            <Box
+                display="flex"
+                alignItems="center"
+            >
+                <UserCard index={targetIndex} />
+                <Button
+                    type="button"
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                    onClick={() => dispatch({type: userTypes.ALL_POSTS, payload: -1})}
+                >
+                    back to all posts
+                </Button>
+            </Box>
             <div className={classes.root}>
-                <GridList cellHeight={180} className={classes.gridList}>
-                    <GridListTile key="Subheader" cols={2} style={{height: 'auto'}}>
-                        <ListSubheader component="div">December</ListSubheader>
-                    </GridListTile>
-                    {tileData.map(tile => (
-                        <GridListTile key={tile.img}>
-                            <img src={tile.img} alt={tile.title}/>
+                <GridList cellHeight={200}>
+                    {allPosts.map(post => (
+                        <GridListTile key={post._id}>
+                            <img src={`${APP_HOST_NAME}/uploads/${post.photo}`} alt={post.postDate}/>
                             <GridListTileBar
-                                title={tile.title}
-                                subtitle={<span>by: {tile.author}</span>}
-                                actionIcon={
-                                    <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                                        <InfoIcon/>
-                                    </IconButton>
-                                }
+                                title={post.postDate}
+                                subtitle={<span>by: {post.postUser}</span>}
                             />
                         </GridListTile>
                     ))}
                 </GridList>
             </div>
-            <Button
-                type="button"
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={() => dispatch({type: userTypes.ALL_POSTS, payload: -1})}
-            >
-                back to all posts
-            </Button>
         </Fragment>
 );
 }
 
-export default connect()(UserPosts);
+function mapStateToProps(store) {
+    return {
+        targetIndex: store.users.targetIndex,
+        allPosts: store.posts.allPosts
+    }
+}
+
+export default connect(mapStateToProps)(UserPosts);

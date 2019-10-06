@@ -107,7 +107,7 @@ function PostCard(props) {
                 <Button
                     type="button"
                     variant="contained"
-                    color="primary"
+                    color={allPosts[index].likes.indexOf(allUsers[userIndex]._id) === -1 ? 'primary' : 'secondary'}
                     className={classes.submit}
                     onClick={() => dispatch(newLike(allPosts[index], allUsers[userIndex]._id, index))}
                 >
