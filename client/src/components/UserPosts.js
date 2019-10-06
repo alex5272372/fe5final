@@ -11,6 +11,7 @@ import {Box} from "@material-ui/core";
 import {userTypes} from "../actions/userActions";
 import UserCard from "./UserCard";
 import {APP_HOST_NAME} from "../settings";
+import {newLike} from "../actions/pageActions";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,6 +27,7 @@ function UserPosts(props) {
     const classes = useStyles();
     const {
         targetIndex,
+        targetUser,
         allPosts,
         dispatch
     } = props;
@@ -49,8 +51,15 @@ function UserPosts(props) {
             </Box>
             <div className={classes.root}>
                 <GridList cellHeight={200}>
-                    {allPosts.map(post => (
-                        <GridListTile key={post._id}>
+                    {allPosts.filter(post => post.postUser === targetUser._id)
+                        .map(post => (
+                        <GridListTile
+                            onClick={() => dispatch({
+                                type: userTypes.OPEN_POST,
+                                payload: allPosts.findIndex(element => element._id === post._id)
+                            })}
+                            key={post._id}
+                        >
                             <img src={`${APP_HOST_NAME}/uploads/${post.photo}`} alt={post.postDate}/>
                             <GridListTileBar
                                 title={post.postDate}
@@ -67,6 +76,7 @@ function UserPosts(props) {
 function mapStateToProps(store) {
     return {
         targetIndex: store.users.targetIndex,
+        targetUser: store.users.allUsers[store.users.targetIndex],
         allPosts: store.posts.allPosts
     }
 }

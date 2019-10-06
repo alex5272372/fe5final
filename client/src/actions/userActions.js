@@ -4,7 +4,9 @@ export const userTypes = {
     SUBSCRIBE: 'SUBSCRIBE',
     UNSUBSCRIBE: 'UNSUBSCRIBE',
     USER_POSTS: 'USER_POSTS',
-    ALL_POSTS: 'ALL_POSTS'
+    ALL_POSTS: 'ALL_POSTS',
+    OPEN_POST: 'OPEN_POST',
+    CLOSE_POST: 'CLOSE_POST'
 };
 
 export function modifyUser(user, type, id) {

@@ -29,7 +29,7 @@ class UserContainer extends Component {
             return (
                 <Fragment>
                     <UserPosts index={this.props.targetIndex} />
-                    <UserPost postIndex={0}/>
+                    <UserPost postIndex={0} />
                 </Fragment>
             )
         } else {
