@@ -7,7 +7,7 @@ export const signInTypes = {
 };
 
 export function signInUser(login, password) {
-    return dispatch => fetch(`${APP_HOST_NAME}/api/users/`)
+    return dispatch => fetch(`${APP_HOST_NAME}/api/users`)
         .then(response => response.json())
         .then(allUsers => {
             const index = allUsers.findIndex(user => user.login === login && user.password === password);
@@ -19,7 +19,7 @@ export function signInUser(login, password) {
                 })
             } else {
 
-                return fetch(`${APP_HOST_NAME}/api/posts/`)
+                return fetch(`${APP_HOST_NAME}/api/posts`)
                     .then(response => response.json())
                     .then(allPosts => {
                         return dispatch({

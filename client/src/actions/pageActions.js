@@ -43,7 +43,7 @@ export function newComment(post, user, comment, index) {
     };
 
     const options = {
-        method: 'PUT',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -75,7 +75,7 @@ export function newLike(post, user, index) {
     };
 
     const options = {
-        method: 'PUT',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },

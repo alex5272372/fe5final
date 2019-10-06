@@ -8,7 +8,7 @@ const getUsers = async () => {
         await client.connect();
 
         const collection = await client.db(db).collection("users");
-        result = await collection.find({}).toArray();
+        const result = await collection.find({}).toArray();
         client.close();
         return result;
 
@@ -23,7 +23,7 @@ const getPosts = async () => {
         await client.connect();
 
         const collection = await client.db(db).collection("posts");
-        result = await collection.find({}).toArray();
+        const result = await collection.find({}).toArray();
         client.close();
         return result;
 

@@ -24,7 +24,7 @@ export function modifyUser(user, type, id) {
     };
 
     const options = {
-        method: 'PUT',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },

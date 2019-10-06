@@ -46,7 +46,7 @@ app.post('/api/post', upload.single('photo'), async function(req, res) {
     res.json(await db.getPosts());
 });
 
-app.put('/api/user/:id', async function(req, res) {
+app.post('/api/user/:id', async function(req, res) {
     await db.editUser(req.params.id, {
         login: req.body.login,
         password: req.body.password,
@@ -55,7 +55,7 @@ app.put('/api/user/:id', async function(req, res) {
     });
 });
 
-app.put('/api/post/:id', async function(req, res) {
+app.post('/api/post/:id', async function(req, res) {
     await db.editPost(req.params.id, {
         postDate: req.body.postDate,
         postUser: req.body.postUser,

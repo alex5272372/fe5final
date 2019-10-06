@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
-
 import Page from '../components/Page';
-import UserCard from "../components/UserCard";
 
 class PageContainer extends Component {
     constructor(props) {
