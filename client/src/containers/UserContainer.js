@@ -10,14 +10,14 @@ class UserContainer extends Component {
         super(props);
 
         this.state = {
-            comment: ''
+            hoverPost: ''
         };
 
-        this.onChangeComment = this.onChangeComment.bind(this);
+        this.changeHoverPost = this.changeHoverPost.bind(this);
     }
 
-    onChangeComment(event) {
-        this.setState({comment: event.target.value});
+    changeHoverPost(id) {
+        this.setState({hoverPost: id});
     }
 
     render() {
@@ -28,7 +28,10 @@ class UserContainer extends Component {
         } else if(this.props.isFetching) {
             return (
                 <Fragment>
-                    <UserPosts index={this.props.targetIndex} />
+                    <UserPosts
+                        hoverPost={this.state.hoverPost}
+                        changeHoverPost={this.changeHoverPost}
+                    />
                     <UserPost postIndex={0} />
                 </Fragment>
             )

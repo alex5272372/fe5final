@@ -12,6 +12,10 @@ import {
     TextField,
     Button
 } from '@material-ui/core';
+import {
+    Favorite,
+    FavoriteBorder
+} from '@material-ui/icons';
 
 import {APP_HOST_NAME} from '../settings';
 import {newComment,newLike} from "../actions/pageActions";
@@ -23,6 +27,7 @@ const useStyles = makeStyles({
     },
     media: {
         height: 400,
+        backgroundSize: 'contain'
     }
 });
 
@@ -52,7 +57,7 @@ function PostCard(props) {
     const postUserIndex = allUsers.findIndex(element => element._id === allPosts[index].postUser);
 
     const items = allPosts[index].comments.map((val, i) =>
-        <ListItem  alignItems="flex-start" key={i}>
+        <ListItem key={i}>
             <UserCard
                 index={allUsers.findIndex(element => element._id === val.user)}
                 date={dateFormat.format(val.date)}
@@ -111,8 +116,7 @@ function PostCard(props) {
                     className={classes.submit}
                     onClick={() => dispatch(newLike(allPosts[index], allUsers[userIndex]._id, index))}
                 >
-                    {allPosts[index].likes.indexOf(allUsers[userIndex]._id) === -1 ? 'like' : 'unlike'}
-                    {'\n' + allPosts[index].likes.length}
+                    {allPosts[index].likes.indexOf(allUsers[userIndex]._id) === -1 ? <FavoriteBorder/> : <Favorite/>}
                 </Button>
             </CardActions>
         </Card>
