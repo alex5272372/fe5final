@@ -1,38 +1,58 @@
 import React from 'react';
 import {connect} from "react-redux";
 
+import {makeStyles} from '@material-ui/core/styles';
+import {Add} from '@material-ui/icons';
 import {
     Button,
     List,
     ListItem,
     TextField,
-    Box
+    Box,
+    Fab
 } from '@material-ui/core';
 
 import PostCard from './PostCard';
-import {newPost} from "../actions/pageActions";
+import {
+    pageTypes,
+    newPost
+} from "../actions/pageActions";
+
+const useStyles = makeStyles({
+    margin: {
+      marginLeft: '45%'
+    }
+});
 
 function PagePosts(props) {
+    const classes = useStyles();
     const {
         commentIndex,
         comments,
+        expanded,
         photo,
         changeCommentIndex,
         onChangeComment,
+        invertExpanded,
         onChangePhoto,
         user,
+        visible,
         allPosts,
         dispatch
     } = props;
 
-    const items = allPosts.sort((a, b) => b.postDate - a.postDate).map((val, i) =>
+    const items = allPosts.sort((a, b) => b.postDate - a.postDate)
+    .filter((val, i) => i < visible)
+    .map((val, i) =>
         <ListItem  alignItems="flex-start" key={val._id}>
             <PostCard
                 index={i}
                 commentIndex={commentIndex}
                 comment={comments[i]}
+                expanded={expanded[i]}
                 changeCommentIndex={changeCommentIndex}
                 onChangeComment={onChangeComment}
+                invertExpanded={invertExpanded}
             />
         </ListItem>
     );
@@ -68,6 +88,15 @@ function PagePosts(props) {
                 </ListItem>
             </Box>
             {items}
+            {visible < allPosts.length && <Fab
+                size="medium"
+                color="secondary"
+                aria-label="add"
+                className={classes.margin}
+                onClick={() => dispatch({type: pageTypes.MORE_POSTS})}
+            >
+                <Add />
+            </Fab>}
         </List>
     );
 }
@@ -75,6 +104,7 @@ function PagePosts(props) {
 function mapStateToProps(store) {
     return {
         user: store.users.allUsers[store.users.index],
+        visible: store.posts.visible,
         allPosts: store.posts.allPosts
     }
 }

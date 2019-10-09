@@ -24,7 +24,8 @@ const useStyles = makeStyles(theme => ({
         objectFit: 'contain'
     },
     tilebar: {
-        height: 300
+        height: 300,
+        textAlign: 'center'
     }
 }));
 
@@ -79,11 +80,13 @@ function UserPosts(props) {
                         imgFullHeight={true}
                     >
                         <img className={classes.tile} src={`${APP_HOST_NAME}/uploads/${post.photo}`} alt={post.postDate}/>
-                        {hoverPost === post._id && <GridListTileBar
-                            className={classes.tilebar}
-                            title={<Fragment><Favorite/> {post.likes.length} <br/>
-                                <Comment/> {post.comments.length}</Fragment>}
-                        />}
+                        {hoverPost === post._id &&
+                            <GridListTileBar
+                                className={classes.tilebar}
+                                title={<Fragment><Favorite/> {post.likes.length} <br/>
+                                    <Comment/> {post.comments.length}</Fragment>}
+                            />
+                        }
                     </GridListTile>
                 ))}
             </GridList>

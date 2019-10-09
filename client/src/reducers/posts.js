@@ -2,6 +2,7 @@ import {actionTypes} from '../actions';
 
 const initialState = {
     index: -1,
+    visible: 3,
     allPosts: []
 };
 
@@ -19,12 +20,14 @@ export default function postsReducer(state = initialState, action) {
         case actionTypes.SIGN_IN_USER:
             return {
                 index: -1,
+                visible: state.visible,
                 allPosts: action.payload.allPosts
             };
 
         case actionTypes.NEW_POST:
             return {
                 index: -1,
+                visible: state.visible,
                 allPosts: action.payload
             };
 
@@ -32,6 +35,7 @@ export default function postsReducer(state = initialState, action) {
             newPosts[action.payload.index].comments = action.payload.comments;
             return {
                 index: -1,
+                visible: state.visible,
                 allPosts: newPosts
             };
         
@@ -39,22 +43,32 @@ export default function postsReducer(state = initialState, action) {
             newPosts[action.payload.index].likes = action.payload.likes;
             return {
                 index: -1,
+                visible: state.visible,
                 allPosts: newPosts
             };
 
         case actionTypes.OPEN_POST:
             return {
                 index: action.payload,
+                visible: state.visible,
                 allPosts: newPosts
             };
 
         case actionTypes.CLOSE_POST:
             return {
                 index: -1,
+                visible: state.visible,
                 allPosts: newPosts
             };
 
-        default:
+            case actionTypes.MORE_POSTS:
+                return {
+                    index: -1,
+                    visible: state.visible + 3 < state.allPosts.length ? state.visible + 3 : state.allPosts.length,
+                    allPosts: newPosts
+                };
+    
+            default:
             return state;
     }
 }

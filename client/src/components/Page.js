@@ -7,9 +7,11 @@ export default function Page(props) {
     const {
         commentIndex,
         comments,
+        expanded,
         photo,
         changeCommentIndex,
         onChangeComment,
+        invertExpanded,
         onChangePhoto
     } = props;
 
@@ -19,9 +21,11 @@ export default function Page(props) {
                 <PagePosts
                     commentIndex={commentIndex}
                     comments={comments}
+                    expanded={expanded}
                     photo={photo}
                     changeCommentIndex={changeCommentIndex}
                     onChangeComment={onChangeComment}
+                    invertExpanded={invertExpanded}
                     onChangePhoto={onChangePhoto}
                 />
             </Grid>

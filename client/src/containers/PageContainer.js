@@ -10,11 +10,13 @@ class PageContainer extends Component {
         this.state = {
             commentIndex: -1,
             comments: [],
+            expanded: [],
             photo: ''
         };
 
         this.changeCommentIndex = this.changeCommentIndex.bind(this);
         this.onChangeComment = this.onChangeComment.bind(this);
+        this.invertExpanded = this.invertExpanded.bind(this);
         this.onChangePhoto = this.onChangePhoto.bind(this);
     }
 
@@ -28,6 +30,12 @@ class PageContainer extends Component {
         this.setState({comments: newComments});
     }
 
+    invertExpanded(index) {
+        const newExpanded = this.state.expanded.slice();
+        newExpanded[index] = !newExpanded[index];
+        this.setState({expanded: newExpanded});
+    }
+
     onChangePhoto(event){
         this.setState({photo: event.target.value});
     }
@@ -36,6 +44,7 @@ class PageContainer extends Component {
         const {
             commentIndex,
             comments,
+            expanded,
             photo
         } = this.state;
 
@@ -48,9 +57,11 @@ class PageContainer extends Component {
                 <Page
                     commentIndex={commentIndex}
                     comments={comments}
+                    expanded={expanded}
                     photo={photo}
                     changeCommentIndex={this.changeCommentIndex}
                     onChangeComment={this.onChangeComment}
+                    invertExpanded={this.invertExpanded}
                     onChangePhoto={this.onChangePhoto}
                 />
              )

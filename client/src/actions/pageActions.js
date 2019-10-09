@@ -3,7 +3,8 @@ import {APP_HOST_NAME} from '../settings';
 export const pageTypes = {
     NEW_POST: 'NEW_POST',
     NEW_COMMENT: 'NEW_COMMENT',
-    NEW_LIKE: 'NEW_LIKE'
+    NEW_LIKE: 'NEW_LIKE',
+    MORE_POSTS: 'MORE_POSTS'
 };
 
 export function newPost(postUser, photo) {

@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import {makeStyles} from '@material-ui/core/styles';
+import clsx from 'clsx';
 import {
     Card,
     CardMedia,
@@ -10,26 +11,39 @@ import {
     List,
     ListItem,
     TextField,
-    Button
+    Button,
+    IconButton,
+    Collapse
 } from '@material-ui/core';
 import {
     Favorite,
-    FavoriteBorder
+    FavoriteBorder,
+    ExpandMore
 } from '@material-ui/icons';
 
 import {APP_HOST_NAME} from '../settings';
 import {newComment,newLike} from "../actions/pageActions";
 import UserCard from "./UserCard";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     card: {
         width: '100%'
     },
     media: {
         height: 400,
         backgroundSize: 'contain'
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: '45%',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
     }
-});
+}));
 
 function PostCard(props) {
     const classes = useStyles();
@@ -37,8 +51,10 @@ function PostCard(props) {
         index,
         commentIndex,
         comment,
+        expanded,
         changeCommentIndex,
         onChangeComment,
+        invertExpanded,
         userIndex,
         allUsers,
         allPosts,
@@ -56,15 +72,31 @@ function PostCard(props) {
     });
     const postUserIndex = allUsers.findIndex(element => element._id === allPosts[index].postUser);
 
-    const items = allPosts[index].comments.map((val, i) =>
-        <ListItem key={i}>
-            <UserCard
-                index={allUsers.findIndex(element => element._id === val.user)}
-                date={dateFormat.format(val.date)}
-                message={val.comment}
-            />
-        </ListItem>
-    );
+    let firstItem = null;
+    let items = null;
+
+    if (allPosts[index].comments.length > 0) {
+        firstItem =
+            <ListItem key={0}>
+                <UserCard
+                    index={allUsers.findIndex(element => element._id === allPosts[index].comments[0].user)}
+                    date={dateFormat.format(allPosts[index].comments[0].date)}
+                    message={allPosts[index].comments[0].comment}
+                />
+            </ListItem>
+    }
+
+    if (allPosts[index].comments.length > 1) {
+        items = allPosts[index].comments.filter((val, i) => i > 0).map((val, i) =>
+            <ListItem key={i}>
+                <UserCard
+                    index={allUsers.findIndex(element => element._id === val.user)}
+                    date={dateFormat.format(val.date)}
+                    message={val.comment}
+                />
+            </ListItem>
+        );
+    }
 
     return (
         <Card
@@ -83,7 +115,20 @@ function PostCard(props) {
             />
             <CardContent>
                 <List>
-                    {items}
+                    {firstItem}
+                    {allPosts[index].comments.length > 1 && <IconButton
+                        className={clsx(classes.expand, {
+                            [classes.expandOpen]: expanded,
+                        })}
+                        onClick={() => invertExpanded(index)}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                    >
+                        <ExpandMore />
+                    </IconButton>}
+                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        {items}
+                    </Collapse>
                 </List>
             </CardContent>
             <CardActions>
